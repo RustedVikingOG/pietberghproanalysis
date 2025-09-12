@@ -1,0 +1,34 @@
+<!-- PietBergh ProAnalysis Logo - Dark Version -->
+<!-- For use on light backgrounds -->
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" role="img" aria-label="PietBergh ProAnalysis Logo">
+  <defs>
+    <!-- Dark blue accent gradient -->
+    <linearGradient id="darkAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1e40af;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(10, 10)">
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <!-- square frame -->
+        <rect x="4" y="4" width="60" height="60" rx="4" ry="6" stroke-width="2" stroke="url(#darkAccent)"/>
+        <!-- chart / mountain line -->
+        <polyline points="5,48 22,28 34,40 46,18 64,44" stroke-width="2" stroke="url(#darkAccent)" stroke-opacity="0.6"/>
+    </g>
+
+    <!-- magnifier group -->
+    <g fill="none" stroke="#1e293b" stroke-linecap="round" stroke-linejoin="round">
+        <!-- outer lens -->
+        <circle cx="30" cy="22" r="12" stroke-width="3"/>
+        <!-- inner ring for detail -->
+        <circle cx="30" cy="22" r="6" stroke-width="1.5"/>
+        <!-- small inner accent/triangle -->
+        <path d="M30 28 L31 24 L36 26 Z" fill="#1e293b" stroke="none"/>
+        <!-- handle -->
+        <line x1="40" y1="38" x2="48" y2="50" stroke-width="6" stroke-linecap="round"/>
+        <!-- connector -->
+        <rect x="40" y="45" width="8" height="4" rx="1" ry="1" transform="rotate(55 55 32.5)" fill="#1e293b" />
+    </g>
+  </g>
+</svg>

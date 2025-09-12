@@ -1,0 +1,107 @@
+<!-- Professional Business Card for Piet Bergh ProAnalysis -->
+<!-- Standard business card size: 85mm x 55mm (3.346" x 2.165") -->
+<!-- SVG dimensions scaled for web display -->
+<svg width="340" height="216" viewBox="0 0 340 216" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Professional gradient -->
+    <linearGradient id="darkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Gold accent -->
+    <linearGradient id="goldAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Subtle shadow -->
+    <filter id="cardShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="1" dy="2" stdDeviation="4" flood-color="rgba(0,0,0,0.3)"/>
+    </filter>
+  </defs>
+
+  <!-- Main card background -->
+  <rect width="340" height="216" rx="8" ry="8" fill="url(#darkGradient)" filter="url(#cardShadow)"/>
+  
+  <!-- Sophisticated logo design inspired by investigation/analysis -->
+  <g transform="translate(20, 20)">
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <!-- square frame -->
+        <rect x="4" y="4" width="60" height="60" rx="4" ry="6" stroke-width="2" stroke="url(#goldAccent)"/>
+        <!-- chart / mountain line (drawn before magnifier so magnifier sits on top) -->
+        <polyline points="5,48 22,28 34,40 46,18 64,44" stroke-width="2" stroke="url(#goldAccent)" stroke-opacity="0.6"/>
+    </g>
+
+    <!-- magnifier group (on top of chart) -->
+    <g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round">
+        <!-- outer lens (smaller, sits over the peaks) -->
+        <circle cx="30" cy="22" r="12" stroke-width="3"/>
+        <!-- inner ring for detail -->
+        <circle cx="30" cy="22" r="6" stroke-width="1.5"/>
+        <!-- small inner accent/triangle -->
+        <path d="M30 28 L31 24 L36 26 Z" fill="#ffffff" stroke="none"/>
+        <!-- handle (shorter, angled, rounded) -->
+        <line x1="40" y1="38" x2="48" y2="50" stroke-width="6" stroke-linecap="round"/>
+        <!-- small connector between lens and handle -->
+        <rect x="40" y="45" width="8" height="4" rx="1" ry="1" transform="rotate(55 55 32.5)" fill="#ffffff" />
+    </g>
+  </g>
+  
+  <!-- Company name with elegant typography -->
+  <g transform="translate(100, 45)">
+    <text x="0" y="0" font-family="Georgia, serif" font-size="24" font-weight="normal" fill="#ffffff" letter-spacing="1px">
+      PietBergh
+    </text>
+    <line x1="0" y1="8" x2="150" y2="8" stroke="url(#goldAccent)" stroke-width="1"/>
+    <text x="0" y="25" font-family="Georgia, serif" font-size="12" font-weight="300" fill="#cbd5e1" letter-spacing="3px">
+      P R O A N A L Y S I S
+    </text>
+  </g>
+  
+  <!-- Professional title -->
+  <text x="20" y="125" font-family="Georgia, serif" font-size="16" font-weight="600" fill="#f1f5f9">
+    Piet Bergh
+  </text>
+  <text x="20" y="140" font-family="Arial, sans-serif" font-size="11" fill="#94a3b8" style="letter-spacing:3px">
+    Principal Investigator &amp; Consultant
+  </text>
+  
+  <!-- Contact information with clean layout -->
+  <g transform="translate(20, 165)">
+    <!-- Email -->
+    <g>
+      <text x="0" y="0" font-family="Arial, sans-serif" font-style="italic" font-size="9" fill="#e2e8f0">
+        pietbergh.proanalysis@gmail.com
+      </text>
+    </g>
+    
+    <!-- Phone -->
+    <g transform="translate(0, 15)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-style="italic" font-size="9" fill="#e2e8f0">
+        +27 71 181 8582
+      </text>
+    </g>
+    
+    <!-- LinkedIn -->
+    <g transform="translate(0, 30)">
+      <text x="0" y="0" font-family="Arial, sans-serif" font-style="italic" font-size="9" fill="#e2e8f0">
+        linkedin.com/in/pietbergh
+      </text>
+    </g>
+  </g>
+  
+  <!-- Experience badge -->
+  <g transform="translate(240, 154)">
+    <rect x="-15" y="0" width="110" height="50" rx="4" fill="rgba(245, 158, 11, 0.1)" stroke="rgba(245, 158, 11, 0.3)" stroke-width="1"/>
+    <text x="40" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="url(#goldAccent)">
+      37+
+    </text>
+    <text x="40" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#cbd5e1">
+      YEARS EXPERIENCE
+    </text>
+  </g>
+  
+  <!-- Subtle bottom accent -->
+  <rect x="0" y="210" width="340" height="6" rx="8" ry="8" fill="url(#goldAccent)" opacity="0.8"/>
+</svg>

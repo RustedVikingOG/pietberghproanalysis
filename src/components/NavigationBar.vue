@@ -16,14 +16,11 @@
           >
             <!-- Logo Icon -->
             <div class="relative">
-              <div class="icon-logo">
-                <span class="text-white font-bold text-lg lg:text-xl">PB</span>
-              </div>
-              <div class="icon-status absolute -bottom-1 -right-1">
-                <svg class="w-2.5 h-2.5 text-slate-900" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-              </div>
+              <img 
+                src="/src/assets/logo-dark.svg" 
+                alt="PietBergh ProAnalysis Logo" 
+                class="w-10 h-10 lg:w-12 lg:h-12"
+              />
             </div>
             
             <!-- Brand Text -->

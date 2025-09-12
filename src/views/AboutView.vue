@@ -1,12 +1,191 @@
 <template>
-  <div class="min-h-screen bg-white py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="text-4xl font-bold text-center mb-8">About</h1>
-      <p class="text-center text-slate-600">About page coming soon...</p>
+  <div class="min-h-screen">
+    <!-- Loading state -->
+    <div v-if="loading" class="flex items-center justify-center min-h-screen">
+      <div class="text-center">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+        <p class="text-slate-600">Loading about content...</p>
+      </div>
     </div>
+
+    <!-- Error state -->
+    <div v-else-if="error" class="flex items-center justify-center min-h-screen">
+      <div class="text-center max-w-md mx-auto px-4">
+        <div class="text-red-500 mb-4">
+          <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </div>
+        <h2 class="text-xl font-semibold text-slate-900 mb-2">Failed to Load Content</h2>
+        <p class="text-slate-600 mb-4">{{ error }}</p>
+        <button
+          @click="refreshContent"
+          class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200"
+        >
+          Try Again
+        </button>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <main v-else-if="isDataLoaded">
+      <!-- Hero Section -->
+      <AboutHero
+        :introduction="introduction"
+        :stats="professionalStats"
+        @scroll-to-services="scrollToSection('services')"
+      />
+
+      <!-- Journey Timeline Section -->
+      <JourneyTimeline
+        :journey-phases="journeyPhases"
+        @learn-more="handleLearnMore"
+      />
+
+      <!-- Core Values Section -->
+      <CoreValues
+        :core-values="coreValues"
+      />
+
+      <!-- Achievements Section -->
+      <AchievementsList
+        :achievements="achievements"
+        :show-credentials="true"
+        @view-credentials="scrollToSection('credentials')"
+      />
+
+      <!-- Professional Association Section -->
+      <ProfessionalAssociation
+        :professional-association="professionalAssociation"
+        @learn-more="handleAssociationLearnMore"
+      />
+    </main>
+
+    <!-- Navigation assistance -->
+    <nav 
+      v-if="isDataLoaded"
+      class="fixed right-4 top-1/2 transform -translate-y-1/2 z-50 hidden lg:block"
+    >
+      <div class="bg-white rounded-lg shadow-lg border border-slate-200 p-2 space-y-2">
+        <button
+          v-for="section in navigationSections"
+          :key="section.id"
+          @click="scrollToSection(section.id)"
+          :class="[
+            'block w-3 h-3 rounded-full transition-all duration-200',
+            activeSection === section.id ? 'bg-blue-600 scale-125' : 'bg-slate-300 hover:bg-slate-400'
+          ]"
+          :title="section.label"
+        />
+      </div>
+    </nav>
   </div>
 </template>
 
 <script setup lang="ts">
-// About page placeholder
+import { ref, onMounted, nextTick } from 'vue';
+import AboutHero from '../components/AboutHero.vue';
+import JourneyTimeline from '../components/JourneyTimeline.vue';
+import CoreValues from '../components/CoreValues.vue';
+import AchievementsList from '../components/AchievementsList.vue';
+import ProfessionalAssociation from '../components/ProfessionalAssociation.vue';
+import { useAboutContent } from '../composables/useAboutContent';
+
+// Composables
+const {
+  loading,
+  error,
+  isDataLoaded,
+  professionalStats,
+  journeyPhases,
+  coreValues,
+  achievements,
+  introduction,
+  professionalAssociation,
+  fetchAboutData,
+  refreshContent
+} = useAboutContent();
+
+// Active section tracking
+const activeSection = ref<string>('hero');
+
+// Navigation sections
+const navigationSections = [
+  { id: 'hero', label: 'Introduction' },
+  { id: 'journey', label: 'Journey' },
+  { id: 'values', label: 'Values' },
+  { id: 'achievements', label: 'Achievements' },
+  { id: 'association', label: 'Association' }
+];
+
+/**
+ * Scroll to a specific section
+ */
+const scrollToSection = (sectionId: string): void => {
+  const element = document.getElementById(sectionId);
+  if (element) {
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+    activeSection.value = sectionId;
+  }
+};
+
+/**
+ * Handle learn more actions from journey timeline
+ */
+const handleLearnMore = (phase: string): void => {
+  // In a real app, this could open a modal or navigate to detailed content
+  console.log('Learn more about:', phase);
+  
+  // For now, scroll to achievements if it's a significant phase
+  if (['The Mastery', 'The Return'].includes(phase)) {
+    scrollToSection('achievements');
+  }
+};
+
+/**
+ * Handle learn more from professional association
+ */
+const handleAssociationLearnMore = (): void => {
+  // Could open detailed information about AEASA membership
+  console.log('Learn more about AEASA membership');
+};
+
+/**
+ * Set up intersection observer for section tracking
+ */
+const setupSectionObserver = (): void => {
+  const sections = navigationSections.map(section => document.getElementById(section.id)).filter(Boolean);
+  
+  if (sections.length === 0) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && entry.target.id) {
+          activeSection.value = entry.target.id;
+        }
+      });
+    },
+    {
+      threshold: 0.3,
+      rootMargin: '-100px 0px -100px 0px'
+    }
+  );
+
+  sections.forEach((section) => {
+    if (section) observer.observe(section);
+  });
+};
+
+// Lifecycle
+onMounted(async () => {
+  await fetchAboutData();
+  
+  // Setup section observer after content loads
+  await nextTick();
+  setupSectionObserver();
+});
 </script>

@@ -8,9 +8,11 @@
         <div class="lg:col-span-2">
           <!-- Logo and Brand -->
           <div class="flex items-center space-x-3 mb-6">
-            <div class="icon-container">
-              <span class="text-white font-bold text-xl">PB</span>
-            </div>
+            <img 
+              src="/src/assets/logo-light.svg" 
+              alt="PietBergh ProAnalysis Logo" 
+              class="w-12 h-12"
+            />
             <div>
               <div class="text-xl font-bold">PietBergh ProAnalysis</div>
               <div class="text-sm text-slate-400">Professional Investigation Services</div>

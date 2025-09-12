@@ -91,15 +91,17 @@
             <div class="absolute inset-0 bg-gradient-to-br from-secondary-500/20 to-secondary-600/30 rounded-3xl transform rotate-3"></div>
             <div class="absolute inset-0 bg-gradient-to-tr from-primary-600/20 to-primary-500/30 rounded-3xl transform -rotate-2"></div>
             
-            <!-- Portrait Placeholder -->
+            <!-- Professional Logo Container -->
             <div class="relative bg-slate-100 rounded-2xl p-8 shadow-2xl">
               <div class="aspect-w-4 aspect-h-5 bg-gradient-to-b from-slate-200 to-slate-300 rounded-xl flex items-center justify-center">
-                <div class="text-center text-slate-600">
-                  <svg class="w-24 h-24 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
-                  </svg>
-                  <p class="text-sm font-medium">Professional Portrait</p>
-                  <p class="text-xs text-slate-500">Piet Bergh</p>
+                <div class="text-center">
+                  <img 
+                    src="/src/assets/logo-dark.svg" 
+                    alt="PietBergh ProAnalysis Logo" 
+                    class="w-24 h-24 mx-auto mb-4"
+                  />
+                  <p class="text-sm font-medium text-slate-700">PietBergh ProAnalysis</p>
+                  <p class="text-xs text-slate-500">Professional Investigation Services</p>
                 </div>
               </div>
               

@@ -1,0 +1,128 @@
+<!-- Professional Business Card Back Side for Piet Bergh ProAnalysis -->
+<!-- Standard business card size: 85mm x 55mm (3.346" x 2.165") -->
+<!-- SVG dimensions scaled for web display -->
+<svg width="340" height="216" viewBox="0 0 340 216" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Professional dark gradient -->
+    <linearGradient id="backDarkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Gold accent -->
+    <linearGradient id="goldBack" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Card shadow -->
+    <filter id="cardShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="1" dy="2" stdDeviation="4" flood-color="rgba(0,0,0,0.3)"/>
+    </filter>
+  </defs>
+
+  <!-- Main card background -->
+  <rect width="340" height="216" rx="8" ry="8" fill="url(#backDarkGradient)" filter="url(#cardShadow)"/>
+  
+  <!-- Top accent line -->
+  <rect x="0" y="0" width="340" height="6" rx="8" ry="8" fill="url(#goldBack)" opacity="0.8"/>
+  
+  <!-- Services section -->
+  <g transform="translate(10, 30)">
+    <text x="0" y="0" font-family="Georgia, serif" font-size="14" font-weight="500" fill="#f1f5f9" letter-spacing="3px">
+      PROFESSIONAL SERVICES
+    </text>
+    <line x1="0" y1="8" x2="280" y2="8" stroke="url(#goldBack)" stroke-width="1" opacity="0.6"/>
+    
+    <!-- Services row: horizontal chips (replaces vertical bullet groups) -->
+    <g transform="translate(0, 15)">
+      <!-- Chip 1 -->
+      <g transform="translate(-5,0)">
+        <rect x="0" y="0" width="102" height="60" rx="6" fill="url(#goldBack)" opacity="0.3" stroke="rgba(245,158,11,0.25)" stroke-width="1"/>
+        <foreignObject x="8" y="4" width="86" height="40">
+          <div xmlns="http://www.w3.org/1999/xhtml"
+               style="font-family: Arial, sans-serif; font-size: 9px; font-weight:600; color: #ffffffff; line-height:1.15; word-wrap:break-word;">
+              Evidential Analysis &amp; Expert Testimony
+          </div>
+        </foreignObject>
+        <foreignObject x="10" y="28" width="86" height="40">
+          <div xmlns="http://www.w3.org/1999/xhtml"
+               style="font-family: Arial, sans-serif; font-size: 7px; color: #94a3b8; line-height:1.15; word-wrap:break-word;">
+            Comprehensive forensic analysis with professional court testimony
+          </div>
+        </foreignObject>
+      </g>
+
+      <!-- Chip 2 -->
+      <g transform="translate(100,0)">
+        <rect x="0" y="0" width="112" height="60" rx="6" fill="url(#goldBack)" opacity="0.3" stroke="rgba(245,158,11,0.25)" stroke-width="1"/>
+        <foreignObject x="8" y="4" width="100" height="40">
+          <div xmlns="http://www.w3.org/1999/xhtml"
+               style="font-family: Arial, sans-serif; font-size: 9px; font-weight:600; color: #ffffffff; line-height:1.15; word-wrap:break-word;">
+            Operational Process Reengineering
+          </div>
+        </foreignObject>
+        <foreignObject x="10" y="28" width="86" height="40">
+          <div xmlns="http://www.w3.org/1999/xhtml"
+               style="font-family: Arial, sans-serif; font-size: 7px; color: #94a3b8; line-height:1.15; word-wrap:break-word;">
+            Strategic business process optimization and efficiency improvement
+          </div>
+        </foreignObject>
+      </g>
+
+      <!-- Chip 3 -->
+      <g transform="translate(215,0)">
+        <rect x="0" y="0" width="112" height="60" rx="6" fill="url(#goldBack)" opacity="0.3" stroke="rgba(245,158,11,0.25)" stroke-width="1"/>
+        <foreignObject x="8" y="4" width="100" height="40">
+          <div xmlns="http://www.w3.org/1999/xhtml"
+               style="font-family: Arial, sans-serif; font-size: 9px; font-weight:600; color: #ffffffff; line-height:1.15; word-wrap:break-word;">
+            Professional Editing &amp; Translation
+          </div>
+        </foreignObject>
+        <foreignObject x="10" y="28" width="86" height="40">
+          <div xmlns="http://www.w3.org/1999/xhtml"
+               style="font-family: Arial, sans-serif; font-size: 7px; color: #94a3b8; line-height:1.15; word-wrap:break-word;">
+            Precision document editing and multilingual translation services
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Professional credentials -->
+  <g transform="translate(10, 150)">
+    <text x="0" y="0" font-family="Georgia, serif" font-size="12" font-weight="600" fill="#f1f5f9" letter-spacing="3px">
+      KEY CREDENTIALS
+    </text>
+    <line x1="0" y1="8" x2="150" y2="8" stroke="url(#goldBack)" stroke-width="1" opacity="0.6"/>
+    
+    <text x="0" y="20" font-family="Arial, sans-serif" font-size="8" fill="#cbd5e1">
+      MA African Languages • Management Services Certificate
+    </text>
+    <text x="0" y="30" font-family="Arial, sans-serif" font-size="8" fill="#cbd5e1">
+      IBM i2 Analyst Notebook • Advanced Investigation Training
+    </text>
+    <text x="0" y="40" font-family="Arial, sans-serif" font-size="8" fill="#cbd5e1">
+      37+ Years Law Enforcement Experience
+    </text>
+  </g>
+  
+  <!-- Professional promise box -->
+  <g transform="translate(230, 140)">
+    <rect x="0" y="0" width="100" height="50" rx="6" fill="rgba(245, 158, 11, 0.08)" stroke="rgba(245, 158, 11, 0.3)" stroke-width="1"/>
+    
+    <foreignObject x="4" y="9" width="90" height="40">
+        <div xmlns="http://www.w3.org/1999/xhtml"
+            style="font-family: Georgia, serif; font-size: 9px; font-style:italic; color: #f59e0b; line-height:1.15; word-wrap:break-word; text-align: center">
+        "Precision, Integrity, Professional Excellence"
+        </div>
+    </foreignObject>
+    
+    <line x1="10" y1="41" x2="90" y2="41" stroke="url(#goldBack)" stroke-width="2" opacity="0.5"/>
+  </g>
+  
+  
+  
+  <!-- Bottom accent line -->
+  <rect x="0" y="210" width="340" height="6" rx="8" ry="8" fill="url(#goldBack)" opacity="0.8"/>
+</svg>

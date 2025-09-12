@@ -1,0 +1,49 @@
+<!-- PietBergh ProAnalysis Full Logo -->
+<!-- Large version with company name -->
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="120" viewBox="0 0 400 120" role="img" aria-label="PietBergh ProAnalysis">
+  <defs>
+    <!-- Gold accent gradient -->
+    <linearGradient id="goldAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Logo icon -->
+  <g transform="translate(10, 10)">
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <!-- square frame -->
+        <rect x="4" y="4" width="60" height="60" rx="4" ry="6" stroke-width="2" stroke="url(#goldAccent)"/>
+        <!-- chart / mountain line -->
+        <polyline points="5,48 22,28 34,40 46,18 64,44" stroke-width="2" stroke="url(#goldAccent)" stroke-opacity="0.6"/>
+    </g>
+
+    <!-- magnifier group -->
+    <g fill="none" stroke="#1e293b" stroke-linecap="round" stroke-linejoin="round">
+        <!-- outer lens -->
+        <circle cx="30" cy="22" r="12" stroke-width="3"/>
+        <!-- inner ring for detail -->
+        <circle cx="30" cy="22" r="6" stroke-width="1.5"/>
+        <!-- small inner accent/triangle -->
+        <path d="M30 28 L31 24 L36 26 Z" fill="#1e293b" stroke="none"/>
+        <!-- handle -->
+        <line x1="40" y1="38" x2="48" y2="50" stroke-width="6" stroke-linecap="round"/>
+        <!-- connector -->
+        <rect x="40" y="45" width="8" height="4" rx="1" ry="1" transform="rotate(55 55 32.5)" fill="#1e293b" />
+    </g>
+  </g>
+
+  <!-- Company name -->
+  <g transform="translate(100, 30)">
+    <text x="0" y="0" font-family="Georgia, serif" font-size="32" font-weight="normal" fill="#1e293b" style="letter-spacing:1px">
+      PietBergh
+    </text>
+    <line x1="0" y1="8" x2="200" y2="8" stroke="url(#goldAccent)" stroke-width="2" shape-rendering="crispEdges"/>
+    <text x="0" y="28" font-family="Georgia, serif" font-size="14" font-weight="300" fill="#64748b" style="letter-spacing:3px">
+      PROANALYSIS
+    </text>
+    <text x="0" y="48" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8">
+      Professional Investigation Services
+    </text>
+  </g>
+</svg>
