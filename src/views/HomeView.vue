@@ -138,6 +138,7 @@
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useBusinessLogic } from '@/composables/useBusinessLogic';
+import type { Service } from '@/models/Service';
 import NavigationBar from '@/components/NavigationBar.vue';
 import HeroSection from '@/components/HeroSection.vue';
 import ServicesOverview from '@/components/ServicesOverview.vue';
@@ -147,11 +148,10 @@ import FooterSection from '@/components/FooterSection.vue';
 const router = useRouter();
 
 // Business Logic
-const { getPageData, getAllServices } = useBusinessLogic();
+const { getAllServices } = useBusinessLogic();
 
 // Reactive Data
-const pageData = ref(null);
-const servicesData = ref([]);
+const servicesData = ref<Service[]>([]);
 
 // Hero Data
 const heroData = ref({
@@ -171,34 +171,49 @@ const featuredServices = ref([
   {
     id: 'evidence-analysis',
     title: 'Evidence Analysis & Review',
-    category: 'evidence-analysis',
+    category: 'evidence-analysis' as const,
     description: 'Comprehensive analysis of evidence, documentation review, and expert consultation for legal proceedings with meticulous attention to detail.',
     features: [
       'Forensic document examination',
       'Chain of custody verification',
       'Expert witness testimony'
+    ],
+    benefits: [
+      'Expert legal analysis',
+      'Detailed documentation',
+      'Professional testimony support'
     ]
   },
   {
     id: 'process-reengineering',
     title: 'Process Reengineering',
-    category: 'process-reengineering',
+    category: 'process-reengineering' as const,
     description: 'Strategic optimization of organizational processes and procedures based on decades of operational management experience.',
     features: [
       'Workflow optimization',
       'Risk assessment protocols',
       'Compliance framework development'
+    ],
+    benefits: [
+      'Improved efficiency',
+      'Risk mitigation',
+      'Regulatory compliance'
     ]
   },
   {
     id: 'editing-translation',
     title: 'Professional Editing & Translation',
-    category: 'editing-translation',
+    category: 'editing-translation' as const,
     description: 'Precision editing and translation services for legal documents, reports, and professional communications.',
     features: [
       'Legal document editing',
       'Afrikaans-English translation',
       'Technical report review'
+    ],
+    benefits: [
+      'Clear communication',
+      'Professional quality',
+      'Bilingual expertise'
     ]
   }
 ]);
@@ -288,8 +303,7 @@ const handleViewServices = () => {
 // Lifecycle
 onMounted(async () => {
   try {
-    // Load page data using business logic
-    pageData.value = await getPageData('home');
+    // Load services data using business logic
     servicesData.value = getAllServices();
     
     console.log('Home page loaded successfully');

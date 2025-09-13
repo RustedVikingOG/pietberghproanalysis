@@ -1,5 +1,5 @@
 import { ref, computed, readonly } from 'vue';
-import { ColorScheme } from '../utils/ColorScheme';
+import { defaultColorScheme } from '../utils/ColorScheme.ts';
 
 /**
  * Composable for managing application color scheme and theme
@@ -9,47 +9,45 @@ export function useColorScheme() {
   const currentTheme = ref<'light' | 'dark' | 'auto'>('light');
   const isDarkMode = ref(false);
 
-  // Color scheme instances
-  const colorScheme = new ColorScheme();
-
   // Computed colors based on current theme
   const colors = computed(() => {
     return isDarkMode.value 
-      ? colorScheme.getDarkModeColors()
-      : colorScheme.getLightModeColors();
+      ? defaultColorScheme // TODO: Implement dark mode colors
+      : defaultColorScheme; // Use light mode colors
   });
 
   const primaryColors = computed(() => {
-    return colorScheme.getPrimaryColors();
+    return defaultColorScheme.primary;
   });
 
   const secondaryColors = computed(() => {
-    return colorScheme.getSecondaryColors();
-  });
-
-  const accentColors = computed(() => {
-    return colorScheme.getAccentColors();
+    return defaultColorScheme.secondary;
   });
 
   const neutralColors = computed(() => {
-    return colorScheme.getNeutralColors();
+    return defaultColorScheme.neutral;
+  });
+
+  // TODO: Future Implementation - More color utilities
+  const accentColors = computed(() => {
+    return defaultColorScheme.secondary; // Temporary fallback
   });
 
   const semanticColors = computed(() => {
-    return colorScheme.getSemanticColors();
+    return defaultColorScheme.neutral; // Temporary fallback
   });
 
   // Utility computed properties
   const currentBackground = computed(() => {
-    return colors.value.background;
+    return isDarkMode.value ? '#0f172a' : '#ffffff';
   });
 
   const currentText = computed(() => {
-    return colors.value.text;
+    return isDarkMode.value ? '#f8fafc' : '#0f172a';
   });
 
   const currentPrimary = computed(() => {
-    return colors.value.primary;
+    return defaultColorScheme.primary['600'];
   });
 
   const currentSecondary = computed(() => {
@@ -67,7 +65,7 @@ export function useColorScheme() {
       // Use system preference
       updateFromSystemPreference();
       // Listen for system changes
-      listenToSystemPreference();
+      watchSystemTheme();
     } else {
       isDarkMode.value = theme === 'dark';
       updateDocumentTheme();
@@ -114,9 +112,9 @@ export function useColorScheme() {
   };
 
   /**
-   * Listen for system preference changes
+   * Watch for system theme changes  
    */
-  const listenToSystemPreference = (): void => {
+  const watchSystemTheme = (): (() => void) => {
     if (typeof window !== 'undefined' && window.matchMedia) {
       const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
       
@@ -126,18 +124,18 @@ export function useColorScheme() {
           updateDocumentTheme();
         }
       };
-
+      
       // Add listener
       mediaQuery.addEventListener('change', handleChange);
       
-      // Return cleanup function
-      return () => mediaQuery.removeEventListener('change', handleChange);
+      // Return cleanup function  
+      return (): void => {
+        mediaQuery.removeEventListener('change', handleChange);
+      };
     }
     
-    return () => {}; // No-op cleanup
-  };
-
-  /**
+    return (): void => {}; // No-op cleanup
+  };  /**
    * Update document classes and CSS variables
    */
   const updateDocumentTheme = (): void => {
@@ -151,7 +149,7 @@ export function useColorScheme() {
       // Update CSS custom properties
       const currentColors = colors.value;
       Object.entries(currentColors).forEach(([key, value]) => {
-        root.style.setProperty(`--color-${key}`, value);
+        root.style.setProperty(`--color-${key}`, value as string);
       });
       
       // Update meta theme-color for mobile browsers
@@ -185,7 +183,7 @@ export function useColorScheme() {
     const variables: Record<string, string> = {};
     
     Object.entries(currentColors).forEach(([key, value]) => {
-      variables[`--color-${key}`] = value;
+      variables[`--color-${key}`] = value as string;
     });
     
     return variables;
@@ -212,12 +210,16 @@ export function useColorScheme() {
 
   /**
    * Get color by name and shade
-   * @param colorName - Name of the color
-   * @param shade - Shade level (optional)
+   * @param _colorName - Name of the color
+   * @param _shade - Shade level (optional)
    * @returns Color value or default
    */
-  const getColor = (colorName: string, shade?: string): string => {
-    return colorScheme.getColor(colorName, shade);
+  const getColor = (_colorName: string, _shade?: string): string => {
+    // TODO: Future Implementation - Dynamic color retrieval
+    // Description: Get color values dynamically from color scheme
+    // Priority: Low
+    // Dependencies: Full ColorScheme implementation
+    return defaultColorScheme.primary['500']; // Temporary fallback
   };
 
   /**

@@ -148,8 +148,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-
 // Props
 interface Props {
   heroData?: {
@@ -163,7 +161,7 @@ interface Props {
   };
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   heroData: () => ({
     badge: 'Former SAPS Brigadier',
     mainTitle: 'PietBergh ProAnalysis',
@@ -178,9 +176,6 @@ const props = withDefaults(defineProps<Props>(), {
 defineEmits<{
   navigate: [path: string];
 }>();
-
-// Computed
-const displayData = computed(() => props.heroData);
 </script>
 
 <style scoped>
