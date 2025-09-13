@@ -33,10 +33,8 @@ export class ContactController {
       
       // Log submission for analytics (in production, you might want to use a proper analytics service)
       this.logSubmission(sanitizedData);
-      
-      return result;
-      
-    } catch (error) {
+
+      return result;    } catch (error) {
       console.error('Contact form submission error:', error);
       return {
         success: false,
@@ -69,14 +67,15 @@ export class ContactController {
    */
   validateField(field: keyof ContactFormData, value: string): { isValid: boolean; error?: string } {
     switch (field) {
-      case 'name':
+      case 'name': {
         const isNameValid = ValidationUtils.validateRequiredString(value, 2, 100);
         return {
           isValid: isNameValid,
           error: isNameValid ? undefined : 'Name must be between 2 and 100 characters'
         };
+      }
         
-      case 'email':
+      case 'email': {
         if (!value.trim()) {
           return { isValid: false, error: 'Email is required' };
         }
@@ -85,36 +84,41 @@ export class ContactController {
           isValid: isEmailValid,
           error: isEmailValid ? undefined : 'Please enter a valid email address'
         };
+      }
         
-      case 'subject':
+      case 'subject': {
         const isSubjectValid = ValidationUtils.validateRequiredString(value, 5, 200);
         return {
           isValid: isSubjectValid,
           error: isSubjectValid ? undefined : 'Subject must be between 5 and 200 characters'
         };
+      }
         
-      case 'message':
+      case 'message': {
         const isMessageValid = ValidationUtils.validateRequiredString(value, 10, 2000);
         return {
           isValid: isMessageValid,
           error: isMessageValid ? undefined : 'Message must be between 10 and 2000 characters'
         };
+      }
         
-      case 'company':
+      case 'company': {
         if (!value) return { isValid: true }; // Optional field
         const isCompanyValid = ValidationUtils.validateRequiredString(value, 1, 200);
         return {
           isValid: isCompanyValid,
           error: isCompanyValid ? undefined : 'Company name must be less than 200 characters'
         };
+      }
         
-      case 'phone':
+      case 'phone': {
         if (!value) return { isValid: true }; // Optional field
         const isPhoneValid = ValidationUtils.validatePhone(value);
         return {
           isValid: isPhoneValid,
           error: isPhoneValid ? undefined : 'Please enter a valid phone number'
         };
+      }
         
       default:
         return { isValid: true };

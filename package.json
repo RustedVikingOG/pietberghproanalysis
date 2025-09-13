@@ -13,9 +13,10 @@
     "test": "playwright test"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@vercel/speed-insights": "^1.2.0",
     "vue": "^3.4.0",
-    "vue-router": "^4.2.0",
-    "@vercel/speed-insights": "^1.2.0"
+    "vue-router": "^4.2.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.55.0",

@@ -80,8 +80,8 @@
           <div>
             <h4 class="text-md font-semibold mb-4">Contact</h4>
             <div class="space-y-2 text-slate-300">
-              <p>Email: info@pietberghproanalysis.com</p>
-              <p>Phone: +1 (555) 123-4567</p>
+              <p>Email: pietbergh.proanalysis@gmail.com</p>
+              <p>+27 12 345 6789</p>
             </div>
           </div>
         </div>
