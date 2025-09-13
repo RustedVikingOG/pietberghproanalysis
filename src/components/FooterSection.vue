@@ -92,8 +92,8 @@
               </svg>
               <div>
                 <div class="text-sm text-slate-300">Email</div>
-                <a href="mailto:piet@pietberghproanalysis.com" class="text-secondary-400 hover:text-secondary-300 transition-colors">
-                  piet@pietberghproanalysis.com
+                <a href="mailto:pietbergh.proanalysis@gmail.com" class="text-secondary-400 hover:text-secondary-300 transition-colors">
+                  pietbergh.proanalysis@gmail.com
                 </a>
               </div>
             </div>
@@ -118,7 +118,7 @@
               <div>
                 <div class="text-sm text-slate-300">Location</div>
                 <div class="text-secondary-400">
-                  Johannesburg, South Africa
+                  Cape Town, South Africa
                 </div>
               </div>
             </div>
@@ -196,7 +196,7 @@ const socialLinks = [
   },
   {
     name: 'Email',
-    url: 'mailto:piet@pietberghproanalysis.com',
+    url: 'mailto:pietbergh.proanalysis@gmail.com',
     icon: 'email'
   },
   {

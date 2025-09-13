@@ -1,6 +1,7 @@
 # extras
 .docs
 .github
+playwright-report
 
 # Logs
 logs
