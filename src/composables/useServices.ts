@@ -92,18 +92,34 @@ export function useServices() {
   /**
    * Handle contact request for a specific service
    */
-  const handleServiceContact = (serviceId: string): void => {
+/**
+ * Handle contact request for a specific service
+ * TODO: Future development
+ * - Integrate with contact form modal or navigation
+ * - Pass service context to contact form
+ * - Track analytics for service-specific contact requests
+ * - Implement service-specific contact workflows
+ */
+const handleServiceContact = (serviceId: string): void => {
     // This will be handled by parent component or router navigation
     console.log('Contact request for service:', serviceId);
-  };
+};
 
   /**
    * Handle navigation to contact page
    */
-  const handleContactNavigation = (): void => {
+/**
+ * Handle navigation to contact page
+ * TODO: Future development
+ * - Implement router navigation to contact page
+ * - Pass current service context if applicable
+ * - Add analytics tracking for navigation events
+ * - Consider deep linking to specific contact form sections
+ */
+const handleContactNavigation = (): void => {
     // This will be handled by parent component or router navigation
     console.log('Navigate to contact page');
-  };
+};
 
   return {
     // State
