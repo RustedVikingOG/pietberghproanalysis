@@ -161,7 +161,8 @@ const navigationItems = [
   { path: '/', label: 'Home', icon: 'home' },
   { path: '/about', label: 'About', icon: 'user' },
   { path: '/services', label: 'Services', icon: 'briefcase' },
-  { path: '/success-stories', label: 'Success Stories', icon: 'star' },
+  { path: '/portfolio', label: 'Portfolio', icon: 'star' },
+  { path: '/testimonials', label: 'Testimonials', icon: 'star' },
   { path: '/contact', label: 'Contact', icon: 'mail' }
 ];
 
