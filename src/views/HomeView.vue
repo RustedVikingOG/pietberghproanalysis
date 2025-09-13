@@ -1,8 +1,5 @@
 <template>
   <div class="min-h-screen">
-    <!-- Navigation -->
-    <NavigationBar />
-    
     <!-- Hero Section -->
     <HeroSection 
       :hero-data="heroData"
@@ -139,7 +136,6 @@ import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useBusinessLogic } from '@/composables/useBusinessLogic';
 import type { Service } from '@/models/Service';
-import NavigationBar from '@/components/NavigationBar.vue';
 import HeroSection from '@/components/HeroSection.vue';
 import ServicesOverview from '@/components/ServicesOverview.vue';
 import FooterSection from '@/components/FooterSection.vue';
