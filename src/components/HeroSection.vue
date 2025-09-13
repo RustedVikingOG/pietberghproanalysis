@@ -96,7 +96,7 @@
               <div class="aspect-w-4 aspect-h-5 bg-gradient-to-b from-slate-200 to-slate-300 rounded-xl flex items-center justify-center">
                 <div class="text-center">
                   <img 
-                    src="/src/assets/logo-dark.svg" 
+                    :src="logoDark" 
                     alt="PietBergh ProAnalysis Logo" 
                     class="w-24 h-24 mx-auto mb-4"
                   />
@@ -148,6 +148,8 @@
 </template>
 
 <script setup lang="ts">
+import logoDark from '@/assets/logo-dark.svg';
+
 // Props
 interface Props {
   heroData?: {

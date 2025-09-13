@@ -1,5 +1,8 @@
 <template>
   <div class="min-h-screen">
+
+    <div class="h-10"></div>
+
     <!-- Loading state -->
     <div v-if="loading" class="flex items-center justify-center min-h-screen">
       <div class="text-center">
@@ -51,7 +54,7 @@
       <AchievementsList
         :achievements="achievements"
         :show-credentials="true"
-        @view-credentials="scrollToSection('credentials')"
+        @view-credentials="handleViewCredentials"
       />
 
       <!-- Professional Association Section -->
@@ -84,12 +87,16 @@
 
 <script setup lang="ts">
 import { ref, onMounted, nextTick } from 'vue';
+import { useRouter } from 'vue-router';
 import AboutHero from '../components/AboutHero.vue';
 import JourneyTimeline from '../components/JourneyTimeline.vue';
 import CoreValues from '../components/CoreValues.vue';
 import AchievementsList from '../components/AchievementsList.vue';
 import ProfessionalAssociation from '../components/ProfessionalAssociation.vue';
 import { useAboutContent } from '../composables/useAboutContent';
+
+// Router for navigation
+const router = useRouter();
 
 // Composables
 const {
@@ -124,8 +131,11 @@ const navigationSections = [
 const scrollToSection = (sectionId: string): void => {
   const element = document.getElementById(sectionId);
   if (element) {
+    // Respect user's motion preferences for accessibility
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
     element.scrollIntoView({
-      behavior: 'smooth',
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
       block: 'start'
     });
     activeSection.value = sectionId;
@@ -136,8 +146,8 @@ const scrollToSection = (sectionId: string): void => {
  * Handle learn more actions from journey timeline
  */
 const handleLearnMore = (phase: string): void => {
-  // In a real app, this could open a modal or navigate to detailed content
-  console.log('Learn more about:', phase);
+  // Navigate to services page for more detailed information
+  router.push('/services');
   
   // For now, scroll to achievements if it's a significant phase
   if (['The Mastery', 'The Return'].includes(phase)) {
@@ -149,8 +159,17 @@ const handleLearnMore = (phase: string): void => {
  * Handle learn more from professional association
  */
 const handleAssociationLearnMore = (): void => {
-  // Could open detailed information about AEASA membership
-  console.log('Learn more about AEASA membership');
+  // Navigate to contact page for AEASA membership inquiries
+  router.push('/contact?inquiry=aeasa');
+};
+
+/**
+ * Handle view credentials action
+ * Scroll to the achievements section where credentials are displayed
+ */
+const handleViewCredentials = (): void => {
+  // Scroll to the achievements section which contains the credentials information
+  scrollToSection('achievements');
 };
 
 /**

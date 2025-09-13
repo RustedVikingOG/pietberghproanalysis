@@ -17,7 +17,7 @@
             <!-- Logo Icon -->
             <div class="relative">
               <img 
-                src="/src/assets/logo-dark.svg" 
+                :src="logoDark" 
                 alt="PietBergh ProAnalysis Logo" 
                 class="w-10 h-10 lg:w-12 lg:h-12"
               />
@@ -147,6 +147,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
+import logoDark from '@/assets/logo-dark.svg';
 
 // Router
 const router = useRouter();

@@ -1,5 +1,8 @@
 <template>
   <div class="min-h-screen bg-white">
+
+    <div class="h-10"></div>
+    
     <!-- Hero Section -->
     <ServiceHero 
       :subtitle="heroSubtitle"

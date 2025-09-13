@@ -17,6 +17,7 @@ const routes = [
   { path: '/about', name: 'About', component: About },
   { path: '/services', name: 'Services', component: Services },
   { path: '/portfolio', name: 'Portfolio', component: Portfolio },
+  { path: '/portfolio/:id', name: 'PortfolioDetail', component: Portfolio, props: true },
   { path: '/testimonials', name: 'Testimonials', component: Testimonials },
   { path: '/contact', name: 'Contact', component: Contact },
 ]
