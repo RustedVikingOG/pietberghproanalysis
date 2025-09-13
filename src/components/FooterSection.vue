@@ -9,7 +9,7 @@
           <!-- Logo and Brand -->
           <div class="flex items-center space-x-3 mb-6">
             <img 
-              src="/src/assets/logo-light.svg" 
+              :src="logoLight" 
               alt="PietBergh ProAnalysis Logo" 
               class="w-12 h-12"
             />
@@ -160,6 +160,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import logoLight from '@/assets/logo-light.svg';
 
 // Props
 interface Props {

@@ -68,8 +68,11 @@ onMounted(async () => {
 const scrollToTestimonials = () => {
   const testimonialsSection = document.getElementById('testimonials-list');
   if (testimonialsSection) {
+    // Respect user's motion preferences for accessibility
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
     testimonialsSection.scrollIntoView({
-      behavior: 'smooth',
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
       block: 'start'
     });
   }

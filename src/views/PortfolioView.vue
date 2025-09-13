@@ -4,6 +4,48 @@
 
       <div class="h-10"></div>
 
+      <!-- Case Detail View -->
+      <div v-if="selectedCase" class="container-section py-16">
+        <button 
+          @click="router.push('/portfolio')" 
+          class="mb-6 inline-flex items-center text-primary-600 hover:text-primary-700 font-medium"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+          Back to Portfolio
+        </button>
+        
+        <div class="max-w-4xl mx-auto">
+          <h1 class="text-4xl font-bold text-slate-900 mb-4">{{ selectedCase.title }}</h1>
+          <div class="flex flex-wrap gap-4 mb-8">
+            <span class="badge-primary">{{ selectedCase.category }}</span>
+            <span class="badge-secondary">{{ selectedCase.caseType }}</span>
+            <span class="text-slate-600">{{ selectedCase.date }}</span>
+            <span v-if="selectedCase.location" class="text-slate-600">{{ selectedCase.location }}</span>
+          </div>
+          
+          <div class="prose max-w-none mb-8">
+            <h2>Case Description</h2>
+            <p class="text-lg text-slate-700">{{ selectedCase.description }}</p>
+            
+            <h2>Outcome</h2>
+            <p class="text-lg text-slate-700">{{ selectedCase.outcome }}</p>
+            
+            <h2>Evidence Analysis</h2>
+            <p class="text-slate-600">{{ selectedCase.evidence.length }} pieces of evidence analyzed</p>
+          </div>
+          
+          <div class="flex gap-4">
+            <button @click="handleContact" class="btn-primary">Discuss Your Case</button>
+            <button @click="router.push('/portfolio')" class="btn-outline">View More Cases</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Portfolio List View -->
+      <div v-else>
+
       <!-- Portfolio Hero Section -->
       <PortfolioHero 
         :portfolio-stats="portfolioStats"
@@ -98,6 +140,7 @@
           </div>
         </div>
       </section>
+      </div>
     </div>
 
     <!-- Footer -->
@@ -107,7 +150,7 @@
 
 <script setup lang="ts">
 import { onMounted, computed } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import PortfolioHero from '@/components/PortfolioHero.vue';
 import PortfolioFilters from '@/components/PortfolioFilters.vue';
 import PortfolioCard from '@/components/PortfolioCard.vue';
@@ -118,6 +161,7 @@ import type { SuccessStory } from '@/models/SuccessStory';
 
 // Router for navigation
 const router = useRouter();
+const route = useRoute();
 
 // Portfolio controller instance
 const portfolioController = new PortfolioController();
@@ -149,6 +193,13 @@ const featuredCases = computed(() => {
   return portfolioController.getFeaturedCases(3); // Get top 3 featured cases
 });
 
+// Check if we're viewing a specific case detail
+const caseId = computed(() => route.params.id as string | undefined);
+const selectedCase = computed(() => {
+  if (!caseId.value) return null;
+  return portfolioController.getPortfolioItems().find(item => item.id === caseId.value) || null;
+});
+
 // Load portfolio items on mount
 onMounted(async () => {
   await loadPortfolioItems();
@@ -158,8 +209,11 @@ onMounted(async () => {
 const scrollToPortfolio = () => {
   const portfolioSection = document.getElementById('portfolio-cases');
   if (portfolioSection) {
+    // Respect user's motion preferences for accessibility
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
     portfolioSection.scrollIntoView({
-      behavior: 'smooth',
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
       block: 'start'
     });
   }
@@ -167,25 +221,8 @@ const scrollToPortfolio = () => {
 
 // Event handlers
 const handleViewDetails = (story: SuccessStory) => {
-  // TODO: Implement case study detail view
-  // Could show a modal or navigate to a detailed page
-  console.log('View details for:', story.title);
-  
-  // For now, show an alert with the story details
-  const details = `
-    Case: ${story.title}
-    Category: ${story.category}
-    Location: ${story.location || 'Not specified'}
-    Date: ${story.date}
-    
-    Description: ${story.description}
-    
-    Outcome: ${story.outcome}
-    
-    Evidence Count: ${story.evidence.length} items
-  `;
-  
-  alert(details);
+  // Navigate to case study detail page following MVC routing pattern
+  router.push(`/portfolio/${story.id}`);
 };
 
 const handleContact = () => {

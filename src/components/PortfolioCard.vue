@@ -97,11 +97,12 @@ interface Props {
 
 interface Emits {
   (e: 'view-details', story: SuccessStory): void;
+  (e: 'media-link-error', error: string): void;
 }
 
 // Define props and emits
 const props = defineProps<Props>();
-defineEmits<Emits>();
+const emit = defineEmits<Emits>();
 
 const formatCaseType = (caseType: SuccessStory['caseType']): string => {
   return caseType
@@ -129,10 +130,17 @@ const getCaseTypeClass = (caseType: SuccessStory['caseType']): string => {
   return classes[caseType] || classes.other;
 };
 
-const openMediaLink = () => {
-  // Open media link in new window/tab
+const openMediaLink = (): void => {
+  // Open media link in new window/tab with error handling
   if (props.successStory.mediaLink) {
-    window.open(props.successStory.mediaLink, '_blank', 'noopener,noreferrer');
+    try {
+      const newWindow = window.open(props.successStory.mediaLink, '_blank', 'noopener,noreferrer');
+      if (!newWindow) {
+        emit('media-link-error', 'Popup was blocked by your browser. Please allow popups for this site.');
+      }
+    } catch (error) {
+      emit('media-link-error', 'Failed to open the link. The URL may be invalid.');
+    }
   }
 };
 </script>

@@ -126,8 +126,12 @@ export function useNavigation() {
     updateCurrentPage(newPath);
     closeMenu();
     
-    // Scroll to top on route change
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Scroll to top on route change with accessibility consideration
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ 
+      top: 0, 
+      behavior: prefersReducedMotion ? 'auto' : 'smooth' 
+    });
     
     // Update document focus for accessibility
     const mainContent = document.querySelector('main');

@@ -2,6 +2,9 @@ import { ref, computed, type Ref } from 'vue';
 import { PortfolioController } from '../controllers/PortfolioController';
 import type { SuccessStory } from '../models/SuccessStory';
 
+// Configuration constants
+const PORTFOLIO_LOADING_DELAY = 100; // ms - simulates async loading
+
 /**
  * Composable for portfolio functionality
  * Provides reactive state and methods for portfolio management
@@ -69,7 +72,7 @@ export function usePortfolio() {
     isLoading.value = true;
     try {
       // Simulate async loading (in real app, this would be an API call)
-      await new Promise(resolve => setTimeout(resolve, 100));
+      await new Promise(resolve => setTimeout(resolve, PORTFOLIO_LOADING_DELAY));
       portfolioItems.value = controller.getPortfolioItems();
     } catch (error) {
       console.error('Failed to load portfolio items:', error);

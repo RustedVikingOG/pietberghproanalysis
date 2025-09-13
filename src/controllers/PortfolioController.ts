@@ -7,6 +7,9 @@ import { ContentService } from '../services/ContentService';
  */
 export class PortfolioController {
   private successStories: SuccessStory[];
+  
+  // Configuration constants
+  private static readonly FEATURED_CASE_CUTOFF_DATE = '2022-01-01';
 
   constructor() {
     this.successStories = ContentService.getSuccessStories();
@@ -43,7 +46,7 @@ export class PortfolioController {
   getFeaturedCases(limit: number = 2): SuccessStory[] {
     // Return most recent cases or cases with media links as featured
     return this.successStories
-      .filter(story => story.mediaLink || story.date >= '2022-01-01')
+      .filter(story => story.mediaLink || story.date >= PortfolioController.FEATURED_CASE_CUTOFF_DATE)
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
       .slice(0, limit);
   }
