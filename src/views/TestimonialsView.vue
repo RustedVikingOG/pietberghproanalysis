@@ -51,6 +51,13 @@ onMounted(async () => {
 });
 
 const handleContact = () => {
-  // Navigate to contact page
+  /*
+   TODO: Implement contact flow
+   - Navigate to the Contact page using vue-router (useRouter -> router.push('/contact'))
+   - Prefill contact form when available (user profile, UTM/query params)
+   - Emit analytics/event tracking for CTA clicks
+   - Add loading state, error handling and user-facing feedback (toasts/snackbars)
+   - Ensure accessibility, write unit and integration tests
+  */
 };
 </script>
