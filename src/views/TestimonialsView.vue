@@ -1,10 +1,16 @@
 <template>
   <div class="min-h-screen bg-white">
-    <!-- Hero Section -->
-    <HeroSection :hero-data="heroData" />
+
+    <div class="h-10"></div>
+    <!-- Testimonials Hero Section -->
+    <TestimonialsHero 
+      :featured-testimonial="featuredTestimonial"
+      :testimonial-stats="testimonialStats"
+      @view-all-testimonials="scrollToTestimonials"
+    />
 
     <!-- Testimonials List -->
-    <section class="section-padding">
+    <section id="testimonials-list" class="section-padding">
       <div class="container-section">
         <h2 class="heading-section text-center mb-8">What Our Clients Say</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -29,35 +35,47 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import HeroSection from '@/components/HeroSection.vue';
+import { useRouter } from 'vue-router';
+import TestimonialsHero from '@/components/TestimonialsHero.vue';
 import TestimonialCard from '@/components/TestimonialCard.vue';
 import FooterSection from '@/components/FooterSection.vue';
 import { TestimonialController } from '@/controllers/TestimonialController';
 import type { Testimonial } from '@/models/Testimonial';
 
+// Router for navigation
+const router = useRouter();
+
 const testimonials = ref<Testimonial[]>([]);
-const heroData = {
-  mainTitle: 'Testimonials',
-  subtitle: 'Hear from our satisfied clients',
-  description: 'Discover how our services have positively impacted our clients.',
-  tagline: 'Real stories, real results.',
-  callToAction: 'Contact us to share your experience.',
-};
+const featuredTestimonial = ref<Testimonial | null>(null);
+const testimonialStats = ref({
+  totalTestimonials: 0,
+  averageRating: '0.0',
+  clientSatisfaction: '0%'
+});
 
 const controller = new TestimonialController();
 
 onMounted(async () => {
+  // Load all testimonials
   testimonials.value = await controller.getTestimonials();
+  
+  // Load featured testimonial and stats for hero
+  featuredTestimonial.value = await controller.getFeaturedTestimonial();
+  testimonialStats.value = await controller.getTestimonialStats();
 });
 
+// Scroll to testimonials section
+const scrollToTestimonials = () => {
+  const testimonialsSection = document.getElementById('testimonials-list');
+  if (testimonialsSection) {
+    testimonialsSection.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
+};
+
 const handleContact = () => {
-  /*
-   TODO: Implement contact flow
-   - Navigate to the Contact page using vue-router (useRouter -> router.push('/contact'))
-   - Prefill contact form when available (user profile, UTM/query params)
-   - Emit analytics/event tracking for CTA clicks
-   - Add loading state, error handling and user-facing feedback (toasts/snackbars)
-   - Ensure accessibility, write unit and integration tests
-  */
+  router.push('/contact');
 };
 </script>

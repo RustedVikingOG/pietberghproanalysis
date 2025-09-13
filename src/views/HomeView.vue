@@ -1,5 +1,8 @@
 <template>
   <div class="min-h-screen">
+
+    <div class="h-10"></div>
+    
     <!-- Hero Section -->
     <HeroSection 
       :hero-data="heroData"

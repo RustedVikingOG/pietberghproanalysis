@@ -11,7 +11,7 @@
         <div class="space-y-6">
           <!-- Title and credentials -->
           <div class="space-y-3">
-            <h1 class="text-4xl lg:text-5xl font-bold tracking-tight">
+            <h1 class="text-4xl lg:text-5xl font-bold tracking-tight text-amber-400">
               Piet Bergh
             </h1>
             <h2 class="text-xl lg:text-2xl text-blue-200 font-medium">

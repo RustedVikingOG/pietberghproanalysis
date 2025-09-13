@@ -1,5 +1,8 @@
 <template>
   <div class="min-h-screen">
+
+    <div class="h-10"></div>
+    
     <!-- Loading state -->
     <div v-if="loading" class="flex items-center justify-center min-h-screen">
       <div class="text-center">
