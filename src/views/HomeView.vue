@@ -128,9 +128,6 @@
         </div>
       </div>
     </section>
-    
-    <!-- Footer -->
-    <FooterSection />
   </div>
 </template>
 
@@ -141,7 +138,6 @@ import { useBusinessLogic } from '@/composables/useBusinessLogic';
 import type { Service } from '@/models/Service';
 import HeroSection from '@/components/HeroSection.vue';
 import ServicesOverview from '@/components/ServicesOverview.vue';
-import FooterSection from '@/components/FooterSection.vue';
 
 // Router
 const router = useRouter();
