@@ -72,8 +72,8 @@ export class ContentService {
       },
       {
         id: 'editing-translation',
-        title: 'Editing and Translation',
-        description: 'Professional editing and translation services bridging linguistic and cultural gaps with scholarly precision.',
+        title: 'Editorial and Translation Services',
+        description: 'Professional editorial and translation services bridging linguistic and cultural gaps with scholarly precision.',
         category: 'editing-translation',
         features: [
           'MA in African Languages expertise',
@@ -283,9 +283,9 @@ export class ContentService {
         }
       },
       {
-        title: 'Editing and Translation Services',
+        title: 'Editorial and Translation Services',
         route: '/editing-translation',
-        description: 'Professional editing and translation services in African languages, English, and Afrikaans.',
+        description: 'Professional editorial and translation services in African languages, English, and Afrikaans.',
         metadata: {
           keywords: ['editing', 'translation', 'African languages', 'Afrikaans', 'linguistic services'],
           author: 'Piet Bergh',

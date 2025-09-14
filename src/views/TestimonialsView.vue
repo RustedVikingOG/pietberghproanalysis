@@ -27,9 +27,6 @@
         <button @click="handleContact" class="btn-primary">Contact Us</button>
       </div>
     </section>
-
-    <!-- Footer -->
-    <FooterSection />
   </div>
 </template>
 
@@ -38,7 +35,6 @@ import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import TestimonialsHero from '@/components/TestimonialsHero.vue';
 import TestimonialCard from '@/components/TestimonialCard.vue';
-import FooterSection from '@/components/FooterSection.vue';
 import { TestimonialController } from '@/controllers/TestimonialController';
 import type { Testimonial } from '@/models/Testimonial';
 

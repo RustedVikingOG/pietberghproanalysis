@@ -142,9 +142,6 @@
       </section>
       </div>
     </div>
-
-    <!-- Footer -->
-    <FooterSection />
   </div>
 </template>
 
@@ -154,7 +151,6 @@ import { useRouter, useRoute } from 'vue-router';
 import PortfolioHero from '@/components/PortfolioHero.vue';
 import PortfolioFilters from '@/components/PortfolioFilters.vue';
 import PortfolioCard from '@/components/PortfolioCard.vue';
-import FooterSection from '@/components/FooterSection.vue';
 import { usePortfolio } from '@/composables/usePortfolio';
 import { PortfolioController } from '@/controllers/PortfolioController';
 import type { SuccessStory } from '@/models/SuccessStory';
