@@ -8,7 +8,7 @@
       <div class="text-center mb-16">
         <h1 class="text-5xl font-bold text-slate-900 mb-4">Contact Us</h1>
         <p class="text-xl text-slate-600 max-w-3xl mx-auto">
-          Ready to optimize your business processes? Get in touch with Piet Bergh Pro Analysis 
+          Ready to optimize your business processes? Get in touch with Piet Bergh ProAnalysis 
           for expert consultation and strategic business solutions.
         </p>
       </div>
@@ -29,7 +29,7 @@
       <!-- Additional Information -->
       <div class="mt-16 max-w-4xl mx-auto">
         <div class="bg-white rounded-xl shadow-lg p-8 text-center">
-          <h3 class="text-2xl font-bold text-slate-900 mb-4">Why Choose Piet Bergh Pro Analysis?</h3>
+          <h3 class="text-2xl font-bold text-slate-900 mb-4">Why Choose Piet Bergh ProAnalysis?</h3>
           <div class="grid md:grid-cols-3 gap-6 mt-8">
             <div class="text-center">
               <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">

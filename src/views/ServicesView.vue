@@ -23,7 +23,7 @@
     <section class="section-padding bg-slate-50">
       <div class="container-section">
         <!-- Section Header -->
-        <div class="text-center mb-16">
+        <div class="text-center">
           <div class="badge-secondary mb-4">
             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
               <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"/>
@@ -46,8 +46,10 @@
           <ServiceDetail
             v-for="service in services"
             :key="service.id"
+            :id="service.id"
             :service="service"
             @contact="handleServiceContact"
+            class="mt-16"
           />
         </div>
       </div>
