@@ -13,8 +13,8 @@ export const EMAIL_CONFIG = {
   FROM_NAME: import.meta.env.VITE_EMAILJS_FROM_NAME,
   
   // Rate limiting - with number conversion and defaults
-  MAX_EMAILS_PER_HOUR: Number(import.meta.env.VITE_EMAILJS_MAX_EMAILS_PER_HOUR) || 10,
-  COOLDOWN_MINUTES: Number(import.meta.env.VITE_EMAILJS_COOLDOWN_MINUTES) || 5
+  MAX_EMAILS_PER_HOUR: 10,
+  COOLDOWN_MINUTES: 5
 } as const;
 
 /**

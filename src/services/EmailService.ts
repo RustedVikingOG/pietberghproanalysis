@@ -12,15 +12,6 @@ export class EmailService {
    * Initialize EmailJS with public key
    */
   private static initializeEmailJS(): void {
-    console.log('ENV DEBUG:', {
-      SERVICE_ID: import.meta.env.VITE_EMAILJS_SERVICE_ID,
-      TEMPLATE_ID: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-      PUBLIC_KEY: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-      TO_EMAIL: import.meta.env.VITE_EMAILJS_TO_EMAIL,
-      FROM_NAME: import.meta.env.VITE_EMAILJS_FROM_NAME,
-      allEnvVars: import.meta.env
-    });
-    
     if (!this.CONFIG.PUBLIC_KEY) {
       throw new Error('EmailJS public key not configured. Please update email.config.ts');
     }
