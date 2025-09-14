@@ -4,13 +4,13 @@
  */
 export const EMAIL_CONFIG = {
   // EmailJS configuration - uses env variables with fallbacks
-  SERVICE_ID: "service_2muard6",
-  TEMPLATE_ID: "template_vm4d0ml",
-  PUBLIC_KEY: "fHZxqRE9Wul4mFUQQ",
+  SERVICE_ID: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+  TEMPLATE_ID: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+  PUBLIC_KEY: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
   
   // Email settings
-  TO_EMAIL: "pietbergh.proanalysis@gmail.com",
-  FROM_NAME: "From Website Contact Form",
+  TO_EMAIL: import.meta.env.VITE_EMAILJS_TO_EMAIL,
+  FROM_NAME: import.meta.env.VITE_EMAILJS_FROM_NAME,
   
   // Rate limiting - with number conversion and defaults
   MAX_EMAILS_PER_HOUR: 10,
