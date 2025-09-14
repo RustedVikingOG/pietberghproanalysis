@@ -199,7 +199,7 @@ const featuredServices = ref([
     id: 'editing-translation',
     title: 'Professional Editing & Translation',
     category: 'editing-translation' as const,
-    description: 'Precision editing and translation services for legal documents, reports, and professional communications.',
+    description: 'Precision editorial and translation services for legal documents, reports, and professional communications.',
     features: [
       'Legal document editing',
       'Afrikaans-English translation',
@@ -279,8 +279,9 @@ const handleNavigation = (path: string) => {
   router.push(path);
 };
 
-const handleServiceDetails = (serviceId: string) => {
-  router.push(`/services/${serviceId}`);
+const handleServiceDetails = (_serviceId: string) => {
+  // Navigate to services page - the services page should handle highlighting the specific service
+  router.push('/services');
 };
 
 const handleContact = () => {

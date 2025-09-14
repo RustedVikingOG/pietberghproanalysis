@@ -1,5 +1,5 @@
 <template>
-  <div class="card-service-detail bg-white rounded-xl shadow-sm border border-slate-200 p-8">
+  <div :id="id" class="card-service-detail bg-white rounded-xl shadow-sm border border-slate-200 p-8">
     <!-- Service Header -->
     <div class="flex flex-col lg:flex-row lg:items-start gap-6 mb-8">
       <!-- Icon -->
@@ -145,6 +145,7 @@ import type { Service } from '../models/Service';
 
 interface Props {
   service: Service;
+  id?: string;
 }
 
 defineProps<Props>();

@@ -71,7 +71,8 @@
                 :key="social.name"
                 :href="social.url"
                 :aria-label="social.ariaLabel || social.name"
-                target="_blank"
+                :target="social.isExternal ? '_blank' : '_self'"
+                :rel="social.isExternal ? 'noopener noreferrer' : undefined"
                 class="group relative w-12 h-12 bg-white/10 hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-600 rounded-xl flex items-center justify-center border border-white/20 hover:border-blue-400 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1"
               >
                 <svg class="w-5 h-5 text-slate-300 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
@@ -199,15 +200,15 @@
           
           <!-- Legal Links -->
           <div class="flex flex-wrap justify-center space-x-8">
-            <router-link
-              v-for="link in footerContent.legalLinks"
+            <button
+              v-for="link in legalLinkActions"
               :key="link.label"
-              :to="link.to"
-              class="text-sm text-slate-400 hover:text-blue-300 transition-colors relative group"
+              @click="link.action"
+              class="text-sm text-slate-400 hover:text-blue-300 transition-colors relative group cursor-pointer"
             >
               {{ link.label }}
               <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
-            </router-link>
+            </button>
           </div>
           
           <!-- Professional Tagline -->
@@ -217,13 +218,98 @@
         </div>
       </div>
     </div>
+
+    <!-- Overlay Modal for Legal Content -->
+    <OverlayModal
+      :is-open="modalController.isOpen.value"
+      :title="modalController.currentContent.value?.title || ''"
+      :icon="modalController.currentContent.value?.icon"
+      :max-width="'3xl'"
+      @close="modalController.closeModal"
+    >
+      <div v-if="modalController.currentContent.value" class="space-y-6">
+        <!-- Last Updated -->
+        <div class="text-sm text-gray-500 bg-gray-50 p-3 rounded-lg">
+          <strong>Last Updated:</strong> {{ modalController.currentContent.value.lastUpdated }}
+        </div>
+
+        <!-- Content Sections -->
+        <div 
+          v-for="section in modalController.currentContent.value.sections"
+          :key="section.heading"
+          class="space-y-3"
+        >
+          <h3 class="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">
+            {{ section.heading }}
+          </h3>
+          <div class="space-y-2">
+            <p 
+              v-for="(paragraph, index) in section.content"
+              :key="index"
+              class="text-gray-700 leading-relaxed"
+            >
+              {{ paragraph }}
+            </p>
+          </div>
+          
+          <!-- Subsections if any -->
+          <template v-if="section.subsections">
+            <div 
+              v-for="subsection in section.subsections"
+              :key="subsection.heading"
+              class="ml-4 space-y-2"
+            >
+              <h4 class="text-md font-medium text-gray-800">
+                {{ subsection.heading }}
+              </h4>
+              <div class="space-y-1">
+                <p 
+                  v-for="(paragraph, subIndex) in subsection.content"
+                  :key="subIndex"
+                  class="text-gray-600 leading-relaxed text-sm"
+                >
+                  {{ paragraph }}
+                </p>
+              </div>
+            </div>
+          </template>
+        </div>
+
+        <!-- Contact Information -->
+        <div 
+          v-if="modalController.currentContent.value.contactInfo"
+          class="mt-8 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400"
+        >
+          <h4 class="font-semibold text-blue-900 mb-2">Contact Us</h4>
+          <p class="text-blue-800 text-sm">
+            For questions regarding this {{ modalController.currentContent.value.title.toLowerCase() }}, please contact us at:
+          </p>
+          <div class="mt-2 space-y-1">
+            <p class="text-blue-800 font-medium">
+              📧 {{ modalController.currentContent.value.contactInfo.email }}
+            </p>
+            <p 
+              v-if="modalController.currentContent.value.contactInfo.phone"
+              class="text-blue-800 font-medium"
+            >
+              📞 {{ modalController.currentContent.value.contactInfo.phone }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </OverlayModal>
   </footer>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
 import logoLight from '@/assets/logo-light.svg';
+import OverlayModal from '@/components/OverlayModal.vue';
+import { ModalController } from '@/controllers/ModalController';
 import type { FooterContent } from '@/models/Footer';
+
+// Create modal controller instance
+const modalController = new ModalController();
 
 // Computed
 const currentYear = computed(() => new Date().getFullYear());
@@ -275,7 +361,7 @@ const footerContent = computed<FooterContent>(() => ({
   socialLinks: [
     {
       name: 'LinkedIn',
-      url: 'https://www.linkedin.com/in/pietbergh',
+      url: 'https://www.linkedin.com/company/pietbergh-proanalysis',
       icon: 'linkedin',
       ariaLabel: 'Visit our LinkedIn profile',
       isExternal: true
@@ -297,9 +383,9 @@ const footerContent = computed<FooterContent>(() => ({
   ],
   navigationSections: [],
   legalLinks: [
-    { label: 'Privacy Policy', to: '/privacy' },
-    { label: 'Terms of Service', to: '/terms' },
-    { label: 'Professional Standards', to: '/standards' }
+    { label: 'Privacy Policy', to: '/contact#privacy' },
+    { label: 'Terms of Service', to: '/contact#terms' },
+    { label: 'Professional Standards', to: '/about#standards' }
   ],
   copyrightText: `© ${new Date().getFullYear()} PietBergh ProAnalysis. All rights reserved.`,
   professionalTagline: 'Meticulous Service for Impeccable Results'
@@ -307,10 +393,10 @@ const footerContent = computed<FooterContent>(() => ({
 
 // Navigation Links
 const serviceLinks = [
-  { label: 'Evidence Analysis', to: '/services/evidence-analysis' },
-  { label: 'Process Reengineering', to: '/services/process-reengineering' },
-  { label: 'Editing & Translation', to: '/services/editing-translation' },
-  { label: 'Success Stories', to: '/success-stories' },
+  { label: 'Evidence Analysis', to: '/services#evidence-analysis' },
+  { label: 'Process Reengineering', to: '/services#process-reengineering' },
+  { label: 'Editing & Translation', to: '/services#editing-translation' },
+  { label: 'Success Stories', to: '/portfolio#portfolio-cases' },
   { label: 'Consultation', to: '/contact' }
 ];
 
@@ -320,5 +406,21 @@ const quickLinks = [
   { label: 'Portfolio', to: '/portfolio' },
   { label: 'Testimonials', to: '/testimonials' },
   { label: 'Contact', to: '/contact' }
+];
+
+// Legal link actions for modal
+const legalLinkActions = [
+  { 
+    label: 'Privacy Policy', 
+    action: () => modalController.openPrivacyPolicy() 
+  },
+  { 
+    label: 'Terms of Service', 
+    action: () => modalController.openTermsOfService() 
+  },
+  { 
+    label: 'Professional Standards', 
+    action: () => modalController.openProfessionalStandards() 
+  }
 ];
 </script>

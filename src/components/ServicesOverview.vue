@@ -42,52 +42,59 @@
             </div>
           </div>
 
-          <!-- Service Content -->
-          <div class="mb-6">
-            <h3 class="text-card-title">
-              {{ service.title }}
-            </h3>
-            <p class="text-slate-600 leading-relaxed line-clamp-3">
-              {{ service.description }}
-            </p>
-          </div>
-
-          <!-- Service Features -->
-          <div class="mb-6">
-            <ul class="space-y-2">
-              <li 
-                v-for="feature in service.features?.slice(0, 3)" 
-                :key="feature"
-                class="flex items-center text-sm text-slate-600"
-              >
-                <svg class="w-4 h-4 text-secondary-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                </svg>
-                {{ feature }}
-              </li>
-            </ul>
-          </div>
-
-          <!-- Service Meta -->
-          <div class="flex items-center justify-between pt-4 border-t border-slate-100">
-            <div class="flex items-center space-x-4">
-              <span class="text-sm text-slate-500">
-                Consultation Available
-              </span>
-              <span class="text-sm font-semibold text-secondary-600">
-                Contact for Pricing
-              </span>
+          <!-- Service Content - flex-grow to take available space -->
+          <div class="flex-grow flex flex-col">
+            <!-- Title and Description -->
+            <div class="mb-6">
+              <h3 class="text-card-title">
+                {{ service.title }}
+              </h3>
+              <p class="text-slate-600 leading-relaxed line-clamp-3">
+                {{ service.description }}
+              </p>
             </div>
-            
-            <button
-              @click="handleViewDetails(service.id)"
-              class="text-primary-600 hover:text-primary-700 font-medium text-sm flex items-center group"
-            >
-              Learn More
-              <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-              </svg>
-            </button>
+
+            <!-- Service Features - flex-grow to distribute space -->
+            <div class="flex-grow mb-6">
+              <ul class="space-y-2">
+                <li 
+                  v-for="feature in service.features?.slice(0, 3)" 
+                  :key="feature"
+                  class="flex items-center text-sm text-slate-600"
+                >
+                  <svg class="w-4 h-4 text-secondary-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  {{ feature }}
+                </li>
+              </ul>
+            </div>
+
+            <!-- Service Meta - always at bottom -->
+            <div class="mt-auto pt-6 border-t border-slate-100">
+              <div class="flex items-center justify-between">
+                <router-link
+                  :to="`/contact`"
+                  class="text-slate-300 hover:text-blue-300 transition-colors text-sm flex items-center group"
+                >
+                  <span class="w-1 h-1 bg-blue-400 rounded-full mr-3 group-hover:scale-150 transition-transform duration-200"></span>
+                  Contact for Pricing
+                </router-link>
+                
+                <router-link
+                  :to="
+                    service.category === 'evidence-analysis' ? '/services#evidence-analysis' :
+                    service.category === 'process-reengineering' ? '/services#process-reengineering' :
+                    service.category === 'editing-translation' ? '/services#editing-translation' :
+                    '/services'
+                  "
+                  class="text-slate-300 hover:text-blue-300 transition-colors text-sm flex items-center group"
+                >
+                  <span class="w-1 h-1 bg-blue-400 rounded-full mr-3 group-hover:scale-150 transition-transform duration-200"></span>
+                  Learn More
+                </router-link>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -116,7 +123,7 @@
               
               <button
                 @click="$emit('view-all')"
-                class="btn-outline border-2 border-slate-300 text-slate-700 hover:bg-slate-50 px-8 py-4 text-lg font-semibold"
+                class="btn border-2 border-slate-300 text-slate-700 hover:bg-slate-700 hover:text-white hover:border-slate-700 px-8 py-4 text-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
               >
                 View All Services
               </button>
@@ -145,22 +152,10 @@ const props = withDefaults(defineProps<Props>(), {
   maxServices: 6
 });
 
-// Emits
-defineEmits<{
-  'view-details': [serviceId: string];
-  'contact': [];
-  'view-all': [];
-}>();
-
 // Computed
 const displayServices = computed(() => 
   props.services.slice(0, props.maxServices)
 );
-
-// Methods
-const handleViewDetails = (serviceId: string) => {
-  console.log('View service details:', serviceId);
-};
 </script>
 
 <style scoped>
