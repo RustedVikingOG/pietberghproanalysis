@@ -279,7 +279,7 @@ const handleNavigation = (path: string) => {
   router.push(path);
 };
 
-const handleServiceDetails = (_serviceId: string) => {
+const handleServiceDetails = () => {
   // Navigate to services page - the services page should handle highlighting the specific service
   router.push('/services');
 };

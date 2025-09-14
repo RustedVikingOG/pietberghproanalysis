@@ -79,6 +79,7 @@
 </template>
 
 <script setup lang="ts">
+import { watch } from 'vue';
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import type { OverlayModalProps, OverlayModalEmits } from '@/models/OverlayModal';
 
@@ -157,7 +158,6 @@ onUnmounted(() => {
 });
 
 // Watch for isOpen changes to handle body scroll
-import { watch } from 'vue';
 watch(() => props.isOpen, (newValue) => {
   if (newValue) {
     document.body.style.overflow = 'hidden';
