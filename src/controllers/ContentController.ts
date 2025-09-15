@@ -57,12 +57,12 @@ export class ContentController {
         {
           phase: 'The Call to Service',
           description: 'Beginning his career in Linguistic Services at SAPS Headquarters',
-          years: '1985'
+          years: '1987'
         },
         {
           phase: 'The Quest',
           description: '37 years of dedicated service culminating in the rank of Brigadier',
-          years: '1985-2022'
+          years: '1987-2024'
         },
         {
           phase: 'The Mastery',

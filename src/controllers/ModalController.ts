@@ -78,7 +78,7 @@ export class ModalController {
       }),
       contactInfo: {
         email: 'pietbergh.proanalysis@gmail.com',
-        phone: '+27 12 345 6789'
+        phone: '+27 71 181 8582'
       },
       sections: [
         {
@@ -142,7 +142,7 @@ export class ModalController {
       }),
       contactInfo: {
         email: 'pietbergh.proanalysis@gmail.com',
-        phone: '+27 12 345 6789'
+        phone: '+27 71 181 8582'
       },
       sections: [
         {
@@ -212,7 +212,7 @@ export class ModalController {
       }),
       contactInfo: {
         email: 'pietbergh.proanalysis@gmail.com',
-        phone: '+27 12 345 6789'
+        phone: '+27 71 181 8582'
       },
       sections: [
         {

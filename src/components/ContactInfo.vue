@@ -36,8 +36,8 @@
             </svg>
             <div>
               <p class="text-sm font-medium text-slate-700">Phone</p>
-              <a href="tel:+27123456789" class="text-blue-600 hover:text-blue-700 transition-colors">
-              +27 12 345 6789
+              <a href="tel:+27711818582" class="text-blue-600 hover:text-blue-700 transition-colors">
+              +27 71 181 8582
               </a>
             </div>
           </div>

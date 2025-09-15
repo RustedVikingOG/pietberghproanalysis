@@ -165,7 +165,7 @@ export class ContentService {
         type: 'degree',
         title: 'MA in African Languages',
         institution: 'University',
-        year: 1985,
+        year: 1987,
         level: 'postgraduate',
         field: 'Linguistics',
         description: 'Establishing scholarly credibility and linguistic expertise'

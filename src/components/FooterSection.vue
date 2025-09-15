@@ -349,8 +349,8 @@ const footerContent = computed<FooterContent>(() => ({
     {
       type: 'phone',
       label: 'Phone',
-      value: '+27 12 345 6789',
-      href: 'tel:+27123456789'
+      value: '+27 71 181 8582',
+      href: 'tel:+27711818582'
     },
     {
       type: 'location',
@@ -375,7 +375,7 @@ const footerContent = computed<FooterContent>(() => ({
     },
     {
       name: 'Phone',
-      url: 'tel:+27123456789',
+      url: 'tel:+27711818582',
       icon: 'phone',
       ariaLabel: 'Call us',
       isExternal: false
