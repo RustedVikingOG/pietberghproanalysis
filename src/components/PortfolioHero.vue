@@ -49,6 +49,7 @@
               :key="caseType"
               class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium"
               :class="getCaseTypeColor(caseType)"
+              :aria-label="String(count)"
             >
               {{ formatCaseType(caseType) }}
             </span>
