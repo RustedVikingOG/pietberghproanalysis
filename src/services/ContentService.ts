@@ -57,7 +57,7 @@ export class ContentService {
           'Management expertise application'
         ],
         benefits: [
-          '18 years in Component Management Services',
+          '15+ years in Component Management Services',
           'Proven leadership experience',
           'Visual methodology with interactive flowcharts',
           'Cyclical process optimization'

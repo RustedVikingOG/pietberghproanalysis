@@ -110,8 +110,8 @@
         </div>
         
         <div class="text-center p-4 bg-white rounded-lg shadow-md">
-          <div class="text-2xl font-bold text-green-600">18</div>
-          <div class="text-sm text-slate-600">Years in Management</div>
+          <div class="text-2xl font-bold text-green-600">30</div>
+          <div class="text-sm text-slate-600">Years in managerial positions</div>
         </div>
         
         <div class="text-center p-4 bg-white rounded-lg shadow-md">
