@@ -78,18 +78,6 @@
 
               <!-- Call to action -->
               <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <a
-                  :href="aeusaWebsite"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
-                >
-                  Visit AEASA Website
-                  <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                  </svg>
-                </a>
-
                 <button
                   @click="learnMoreAboutMembership"
                   class="inline-flex items-center px-6 py-3 bg-white hover:bg-gray-50 text-blue-600 font-medium rounded-lg border border-blue-200 transition-colors duration-200 shadow-md hover:shadow-lg"
@@ -153,9 +141,6 @@ defineProps<Props>();
 const emit = defineEmits<{
   learnMore: [];
 }>();
-
-// AEASA website URL
-const aeusaWebsite = 'https://www.aeasa.org.za'; // Placeholder URL
 
 // Membership benefits data
 const membershipBenefits = [

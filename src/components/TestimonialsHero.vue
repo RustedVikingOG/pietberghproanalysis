@@ -108,13 +108,8 @@
                 </blockquote>
 
                 <div class="flex items-center">
-                  <div v-if="featuredTestimonial.imageUrl" class="w-12 h-12 rounded-full bg-slate-200 mr-4 overflow-hidden">
-                    <img :src="featuredTestimonial.imageUrl" :alt="featuredTestimonial.name" class="w-full h-full object-cover"/>
-                  </div>
-                  <div v-else class="w-12 h-12 rounded-full bg-blue-100 mr-4 flex items-center justify-center">
-                    <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                    </svg>
+                  <div class="w-12 h-12 rounded-full bg-slate-200 mr-4 overflow-hidden">
+                    <img :src="randomAvatarUrl" :alt="`Avatar for ${featuredTestimonial.name}`" class="w-full h-full object-cover"/>
                   </div>
                   <div>
                     <div class="font-semibold text-slate-900">{{ featuredTestimonial.name }}</div>
@@ -162,6 +157,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
 import type { Testimonial } from '@/models/Testimonial';
 
 interface Props {
@@ -178,8 +174,21 @@ interface Emits {
   (e: 'contact'): void;
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
 defineEmits<Emits>();
+
+// Generate random avatar URL using DiceBear API
+const randomAvatarUrl = computed(() => {
+  if (!props.featuredTestimonial) return '';
+  
+  // Use testimonial ID or name to create consistent but varied avatars
+  const seed = props.featuredTestimonial.id || props.featuredTestimonial.name;
+  // Use different avatar styles randomly
+  const styles = ['avataaars', 'initials', 'bottts', 'identicon'];
+  const randomStyle = styles[Math.floor(Math.random() * styles.length)];
+  
+  return `https://api.dicebear.com/7.x/${randomStyle}/svg?seed=${encodeURIComponent(seed)}`;
+});
 </script>
 
 <style scoped>
