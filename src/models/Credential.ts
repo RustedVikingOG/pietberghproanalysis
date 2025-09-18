@@ -11,3 +11,8 @@ export interface Credential {
   level?: 'undergraduate' | 'postgraduate' | 'professional';
   field?: string;
 }
+
+export interface Achievement {
+  title: string;
+  description: string;
+}

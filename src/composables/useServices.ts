@@ -50,7 +50,7 @@ export function useServices() {
    * Get hero subtitle text
    */
   const heroSubtitle = computed(() => 
-    'Three decades of expertise in expertise in law enforcement, evidence analysis, process optimization, and linguistic services. Delivering precision, integrity, and results.'
+    'Three decades of expertise in law enforcement, evidence analysis, process optimization, and linguistic services. Delivering precision, integrity, and results.'
   );
 
   /**

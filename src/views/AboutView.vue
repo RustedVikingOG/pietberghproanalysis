@@ -50,12 +50,57 @@
         :core-values="coreValues"
       />
 
+      <!-- #################### -->
       <!-- Achievements Section -->
-      <AchievementsList
-        :achievements="achievements"
-        :show-credentials="true"
-        @view-credentials="handleViewCredentials"
-      />
+      <!-- #################### -->
+      <AchievementsLayout
+        title="Professional Achievements"
+        description="A distinguished record of excellence spanning over three decades of dedicated service and professional growth"
+      >
+        <!-- Achievements grid -->
+        <template #achievements-grid>
+          <CardLayout
+            :class="'grid grid-cols-1 md:grid-cols-2 gap-8 mb-12'"
+          >
+            <AchievementCard
+              v-for="achievement in achievementsData"
+              :key="achievement.id"
+              :achievement="achievement"
+              :category="getAchievementCategory(achievement)"
+            />
+          </CardLayout>
+        </template>
+
+        <!-- Credentials integration -->
+        <template #credentials-list>
+          <CredentialsCardLayout>
+            <CredentialCard
+              v-for="credential in getCredentialsWithIcons()"
+              :key="credential.title"
+              :icon="credential.iconComponent"
+              :title="credential.title"
+              :description="credential.description"
+              :bg-color="credential.bgColor"
+              :icon-color="credential.iconColor"
+            />
+          </CredentialsCardLayout>
+        </template>
+
+        <!-- Statistics summary -->
+        <template #statistics-summary>
+          <CardLayout
+            :class="'mt-12 grid grid-cols-2 md:grid-cols-4 gap-6'"
+          >
+            <StatCard
+              v-for="stat in stats"
+              :key="stat.id"
+              :value="stat.value"
+              :label="stat.label"
+              :color="stat.color"
+            />
+          </CardLayout>
+        </template>
+      </AchievementsLayout>
 
       <!-- Professional Association Section -->
       <ProfessionalAssociation
@@ -91,7 +136,16 @@ import { useRouter } from 'vue-router';
 import AboutHero from '../components/AboutHero.vue';
 import JourneyTimeline from '../components/JourneyTimeline.vue';
 import CoreValues from '../components/CoreValues.vue';
-import AchievementsList from '../components/AchievementsList.vue';
+import CredentialsCardLayout from '../components/layouts/CredentialsCardLayout.vue';
+import CredentialCard from '../components/cards/CredentialCard.vue';
+import CardLayout from '../components/layouts/CardLayout.vue';
+import StatCard from '../components/cards/StatCard.vue';
+import AchievementCard from '../components/cards/AchievementCard.vue';
+import { useAchievementCredentials } from '@/composables/achievements/useAchievementCredential';
+import { useAchievementStats } from '@/composables/achievements/useAchievementStats';
+import { useAchievementsGeneral } from '@/composables/achievements/useAchievementsGeneral';
+
+import AchievementsLayout from '@/components/layouts/AchievementsLayout.vue';
 import ProfessionalAssociation from '../components/ProfessionalAssociation.vue';
 import { useAboutContent } from '../composables/useAboutContent';
 
@@ -106,12 +160,19 @@ const {
   professionalStats,
   journeyPhases,
   coreValues,
-  achievements,
+  // achievements,
   introduction,
   professionalAssociation,
   fetchAboutData,
   refreshContent
 } = useAboutContent();
+
+const { getCredentialsWithIcons } = useAchievementCredentials();
+const { getStats } = useAchievementStats();
+const { getAchievements, getAchievementCategory } = useAchievementsGeneral();
+
+const stats = getStats();
+const achievementsData = getAchievements();
 
 // Active section tracking
 const activeSection = ref<string>('hero');
@@ -161,15 +222,6 @@ const handleLearnMore = (phase: string): void => {
 const handleAssociationLearnMore = (): void => {
   // Navigate to contact page for AEASA membership inquiries
   router.push('/contact?inquiry=aeasa');
-};
-
-/**
- * Handle view credentials action
- * Scroll to the achievements section where credentials are displayed
- */
-const handleViewCredentials = (): void => {
-  // Scroll to the achievements section which contains the credentials information
-  scrollToSection('achievements');
 };
 
 /**

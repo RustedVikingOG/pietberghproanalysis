@@ -15,6 +15,7 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@vercel/speed-insights": "^1.2.0",
+    "lucide-vue-next": "^0.544.0",
     "vue": "^3.4.0",
     "vue-router": "^4.2.0"
   },
@@ -23,6 +24,7 @@
     "@types/node": "^24.3.1",
     "@vitejs/plugin-vue": "^5.0.0",
     "@vue/eslint-config-typescript": "^12.0.0",
+    "lucide-vue-next": "^0.544.0",
     "autoprefixer": "^10.4.0",
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.17.0",

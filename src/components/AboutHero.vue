@@ -1,7 +1,9 @@
 <template>
   <section id="hero" class="relative bg-slate-900 text-white py-16 lg:py-24">
     <!-- Background gradient overlay -->
-    <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 opacity-90"></div>
+    <div class="bg-hero-pattern">
+      <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 opacity-90"></div>
+    </div>
     
     <!-- Content container -->
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

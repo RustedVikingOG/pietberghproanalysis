@@ -1,6 +1,6 @@
 import type { Service } from '../models/Service';
 import type { SuccessStory } from '../models/SuccessStory';
-import type { Credential } from '../models/Credential';
+import type { Credential, Achievement } from '../models/Credential';
 import type { Page } from '../models/Page';
 
 /**
@@ -96,6 +96,27 @@ export class ContentService {
         ]
       }
     ];
+  }
+
+  /**
+   * Get list of achievements
+   * @returns Array of achievements in tenure
+   */
+  static getAchievements(): Achievement[] {
+    return [
+      {
+        title: "Academic Excellence",
+        description: "MA in African Languages with scholarly credentials"
+      },
+      {
+        title: "Professional Training",
+        description: "Specialized law enforcement and analytical training"
+      },
+      {
+        title: "Advanced Tools",
+        description: "Proficiency in cutting-edge analytical tools and methodologies"
+      }
+    ]
   }
 
   /**
