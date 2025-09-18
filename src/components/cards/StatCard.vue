@@ -1,7 +1,11 @@
 <template>
-  <div class="text-center p-4 bg-white rounded-lg shadow-md">
-    <div :class="`text-2xl font-bold ${color}`">{{ value }}</div>
-    <div class="text-sm text-slate-600">{{ label }}</div>
+  <div :class="containerClass">
+    <div :class="valueClass">
+        {{ value }}
+    </div>
+    <div :class="labelClass">
+        {{ label }}
+    </div>
   </div>
 </template>
 
@@ -9,7 +13,9 @@
 interface Props {
   value: string;
   label: string;
-  color: string;
+  containerClass: string;
+  valueClass: string;
+  labelClass: string;
 }
 
 defineProps<Props>();

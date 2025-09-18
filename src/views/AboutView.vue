@@ -96,7 +96,9 @@
               :key="stat.id"
               :value="stat.value"
               :label="stat.label"
-              :color="stat.color"
+              :container-class="`text-center p-4 bg-white rounded-lg shadow-md`"
+              :value-class="`text-2xl font-bold ${stat.color}`"
+              :label-class="`text-sm text-slate-600`"
             />
           </CardLayout>
         </template>
@@ -160,7 +162,6 @@ const {
   professionalStats,
   journeyPhases,
   coreValues,
-  // achievements,
   introduction,
   professionalAssociation,
   fetchAboutData,
@@ -168,10 +169,10 @@ const {
 } = useAboutContent();
 
 const { getCredentialsWithIcons } = useAchievementCredentials();
-const { getStats } = useAchievementStats();
+const { getStatsA } = useAchievementStats();
 const { getAchievements, getAchievementCategory } = useAchievementsGeneral();
 
-const stats = getStats();
+const stats = getStatsA();
 const achievementsData = getAchievements();
 
 // Active section tracking

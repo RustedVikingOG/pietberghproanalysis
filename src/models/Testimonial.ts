@@ -4,4 +4,6 @@ export interface Testimonial {
   title: string;
   message: string;
   imageUrl?: string;
+  pdfUrl?: string;
+  pdfTitle?: string;
 }

@@ -1,11 +1,16 @@
-import { achievementStats, type AchievementStat } from '@/models/achievements/AchievementStats';
+import { achievementStatsA, achievementStatsB, type AchievementStat } from '@/models/achievements/AchievementStats';
 
 export function useAchievementStats() {
-  const getStats = (): AchievementStat[] => {
-    return achievementStats;
+  const getStatsA = (): AchievementStat[] => {
+    return achievementStatsA;
+  };
+
+  const getStatsB = (): AchievementStat[] => {
+    return achievementStatsB;
   };
 
   return {
-    getStats,
+    getStatsA,
+    getStatsB,
   };
 }

@@ -63,25 +63,20 @@
           </div>
 
           <!-- Quick Stats -->
-          <div class="grid-stats pt-8 border-t border-primary-600/30">
-            <div class="text-center">
-              <div class="text-stat-value text-secondary-400">37+</div>
-              <div class="text-stat-label text-primary-200">Years Experience</div>
-            </div>
-            <div class="text-center">
-              <div class="text-stat-value text-secondary-400">26+</div>
-              <div class="text-stat-label text-primary-200">High-Profile Cases</div>
-            </div>
-            <div class="text-center">
-              <div class="text-stat-value text-secondary-400">18</div>
-              <div class="text-stat-label text-primary-200">Management Years</div>
-            </div>
-            <div class="text-center">
-              <div class="text-stat-value text-secondary-400">100%</div>
-              <div class="text-stat-label text-primary-200">Success Rate</div>
-            </div>
-          </div>
-        </div>
+          <CardLayout
+            :class="'grid-stats pt-8 border-t border-primary-600/30'"
+          >
+            <StatCard
+              v-for="stat in stats"
+              :key="stat.id"
+              :value="stat.value"
+              :label="stat.label"
+              :container-class="`text-center`"
+              :value-class="`text-stat-value text-secondary-400`"
+              :label-class="`text-stat-label text-primary-200`"
+            />
+          </CardLayout>
+        </div> 
 
         <!-- Image/Visual Column -->
         <div class="relative">
@@ -149,6 +144,12 @@
 
 <script setup lang="ts">
 import logoDark from '@/assets/logo-dark.svg';
+import CardLayout from './layouts/CardLayout.vue';
+import StatCard from './cards/StatCard.vue';
+import { useAchievementStats } from '@/composables/achievements/useAchievementStats';
+
+const { getStatsB } = useAchievementStats();
+const stats = getStatsB();
 
 // Props
 interface Props {

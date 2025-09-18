@@ -2,6 +2,7 @@ import type { Service } from '../models/Service';
 import type { SuccessStory } from '../models/SuccessStory';
 import type { Credential, Achievement } from '../models/Credential';
 import type { Page } from '../models/Page';
+import type { Testimonial } from '../models/Testimonial';
 
 /**
  * Service for content management and organization
@@ -171,6 +172,24 @@ export class ContentService {
         category: 'Cash-in-Transit and Corruption',
         caseType: 'cash-in-transit',
         location: 'Kraaifontein'
+      },
+      {
+        id: 'wayne-lawrence-murder',
+        title: 'Wayne Lawrence Murder Conviction',
+        description: 'Comprehensive evidence analysis in domestic violence case resulting in life sentence for murder and attempted murder.',
+        outcome: 'Wayne Lawrence sentenced to life imprisonment for murder of ex-partner and attempted murder of their daughter.',
+        evidence: [
+          'Domestic violence investigation',
+          'Evidence chain of custody',
+          'Witness testimony coordination',
+          'Crime scene analysis',
+          'Digital evidence examination'
+        ],
+        date: '2025-03-18',
+        category: 'Domestic Violence Murder',
+        caseType: 'murder',
+        location: 'South Africa',
+        mediaLink: 'https://dailyvoice.co.za/news/2025-03-18-girlfriend-killer-gets-71-year-straf/'
       }
     ];
   }
@@ -253,6 +272,37 @@ export class ContentService {
         year: 2020,
         field: 'Business Consulting',
         description: 'Transition to private practice preparation'
+      }
+    ];
+  }
+
+  /**
+   * Get testimonials from clients and colleagues
+   * @returns Array of testimonials
+   */
+  static getTestimonials(): Testimonial[] {
+    return [
+      {
+        id: 'brigadier-bergh-official-statement',
+        name: 'Official Statement',
+        title: 'Brigadier Piet Bergh - Official Statement',
+        message: 'Official testimonial document from Brigadier Piet Bergh detailing professional achievements and expertise.',
+        pdfUrl: '/testimonials/BRIGADIER_BERGH_OfficialStatement.pdf',
+        pdfTitle: 'Download Official Statement PDF'
+      },
+      {
+        id: 'client-satisfaction-1',
+        name: 'Anonymous Client',
+        title: 'Satisfied Client',
+        message: 'Exceptional analytical skills and attention to detail. The evidence analysis provided was crucial to our case success.',
+        imageUrl: '/testimonials/client-1.jpg'
+      },
+      {
+        id: 'colleague-recommendation',
+        name: 'Law Enforcement Colleague',
+        title: 'Professional Recommendation',
+        message: 'Brigadier Bergh\'s expertise in evidence analysis and communication patterns has been invaluable to multiple high-profile investigations.',
+        imageUrl: '/testimonials/colleague-1.jpg'
       }
     ];
   }
