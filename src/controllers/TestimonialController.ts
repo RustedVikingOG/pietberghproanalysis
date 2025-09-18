@@ -1,10 +1,10 @@
-import { TestimonialService } from '@/services/TestimonialService';
+import { ContentService } from '@/services/ContentService';
 import type { Testimonial } from '@/models/Testimonial';
 
 export class TestimonialController {
   async getTestimonials(): Promise<Testimonial[]> {
     try {
-      return await TestimonialService.fetchTestimonials();
+      return ContentService.getTestimonials();
     } catch (error) {
       console.error(error);
       return [];
@@ -17,7 +17,7 @@ export class TestimonialController {
    */
   async getFeaturedTestimonial(): Promise<Testimonial | null> {
     try {
-      const testimonials = await TestimonialService.fetchTestimonials();
+      const testimonials = ContentService.getTestimonials();
       // Return the first testimonial or one with the longest message
       if (testimonials.length === 0) return null;
       
@@ -40,7 +40,7 @@ export class TestimonialController {
     clientSatisfaction: string;
   }> {
     try {
-      const testimonials = await TestimonialService.fetchTestimonials();
+      const testimonials = ContentService.getTestimonials();
       return {
         totalTestimonials: testimonials.length,
         averageRating: '5.0', // Placeholder - could be calculated if ratings exist

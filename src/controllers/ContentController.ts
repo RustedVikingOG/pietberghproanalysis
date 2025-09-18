@@ -66,8 +66,8 @@ export class ContentController {
         },
         {
           phase: 'The Mastery',
-          description: 'Becoming Provincial Commander of Priority Crime Specialized Investigation for the Hawks',
-          years: '2010-2022'
+          description: 'Retired as Provincial Commander of Priority Crime Specialized Investigation for the Hawks',
+          years: '2011-2024'
         },
         {
           phase: 'The Return',
@@ -95,9 +95,9 @@ export class ContentController {
       ],
       achievements: [
         '37 years of distinguished law enforcement service',
-        'Former SAPS Brigadier and Provincial Hawks Commander',
+        'Former Provincial Commander Priority Crime Specialized Investigation, Hawks (Brigadier)',
         '26 high-profile cases successfully analyzed',
-        '18 years in Component Management Services',
+        '15+ years in Component Management Services',
         'MA in African Languages with scholarly credentials',
         'Advanced analytical tools proficiency'
       ],

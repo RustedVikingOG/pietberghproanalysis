@@ -69,7 +69,7 @@
       />
 
       <!-- Portfolio Stats -->
-      <section class="section-padding bg-slate-50">
+      <section class="py-10 bg-slate-50 border-b">
         <div class="container-section">
           <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
             <div class="text-center">

@@ -136,7 +136,7 @@ import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useBusinessLogic } from '@/composables/useBusinessLogic';
 import type { Service } from '@/models/Service';
-import HeroSection from '@/components/HeroSection.vue';
+import HeroSection from '@/components/HomeHero.vue';
 import ServicesOverview from '@/components/ServicesOverview.vue';
 
 // Router
@@ -202,13 +202,13 @@ const featuredServices = ref([
     description: 'Precision editorial and translation services for legal documents, reports, and professional communications.',
     features: [
       'Legal document editing',
-      'Afrikaans-English translation',
+      'Multilingual editorial and translation services',
       'Technical report review'
     ],
     benefits: [
       'Clear communication',
       'Professional quality',
-      'Bilingual expertise'
+      'Multilingual expertise'
     ]
   }
 ]);

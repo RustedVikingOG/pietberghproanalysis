@@ -332,11 +332,6 @@ const footerContent = computed<FooterContent>(() => ({
       title: '37+ Years Experience',
       description: 'Law Enforcement & Investigation',
       verified: true
-    },
-    {
-      title: 'Licensed Private Investigator',
-      description: 'Professional Certification',
-      verified: true
     }
   ],
   contactDetails: [

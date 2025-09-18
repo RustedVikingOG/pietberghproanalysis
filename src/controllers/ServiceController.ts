@@ -125,7 +125,7 @@ export class ServiceController {
       experienceYears: 37, // From story.md - Piet's years of experience
       highlightedFeatures: [
         '26 high-profile cases',
-        '18 years in management',
+        '30 years in managerial positions',
         'Advanced analytical tools',
         'Court-ready expertise'
       ]
