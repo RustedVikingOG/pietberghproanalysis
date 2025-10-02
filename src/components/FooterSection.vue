@@ -303,8 +303,10 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
+
 import logoLight from '@/assets/logo-light.svg';
 import OverlayModal from '@/components/OverlayModal.vue';
+
 import { ModalController } from '@/controllers/ModalController';
 import type { FooterContent } from '@/models/Footer';
 

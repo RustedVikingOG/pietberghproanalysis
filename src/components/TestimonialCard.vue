@@ -20,6 +20,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
+
 import type { Testimonial } from '@/models/Testimonial';
 
 const props = defineProps<{ testimonial: Testimonial }>();

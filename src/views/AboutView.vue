@@ -135,21 +135,22 @@
 <script setup lang="ts">
 import { ref, onMounted, nextTick } from 'vue';
 import { useRouter } from 'vue-router';
-import AboutHero from '../components/AboutHero.vue';
-import JourneyTimeline from '../components/JourneyTimeline.vue';
-import CoreValues from '../components/CoreValues.vue';
-import CredentialsCardLayout from '../components/layouts/CredentialsCardLayout.vue';
-import CredentialCard from '../components/cards/CredentialCard.vue';
-import CardLayout from '../components/layouts/CardLayout.vue';
-import StatCard from '../components/cards/StatCard.vue';
-import AchievementCard from '../components/cards/AchievementCard.vue';
+
+import AboutHero from '@/components/AboutHero.vue';
+import JourneyTimeline from '@/components/JourneyTimeline.vue';
+import CoreValues from '@/components/CoreValues.vue';
+import CredentialsCardLayout from '@/components/layouts/CredentialsCardLayout.vue';
+import CredentialCard from '@/components/cards/CredentialCard.vue';
+import CardLayout from '@/components/layouts/CardLayout.vue';
+import StatCard from '@/components/cards/StatCard.vue';
+import AchievementCard from '@/components/cards/AchievementCard.vue';
+import AchievementsLayout from '@/components/layouts/AchievementsLayout.vue';
+import ProfessionalAssociation from '@/components/ProfessionalAssociation.vue';
+
 import { useAchievementCredentials } from '@/composables/achievements/useAchievementCredential';
 import { useAchievementStats } from '@/composables/achievements/useAchievementStats';
 import { useAchievementsGeneral } from '@/composables/achievements/useAchievementsGeneral';
-
-import AchievementsLayout from '@/components/layouts/AchievementsLayout.vue';
-import ProfessionalAssociation from '../components/ProfessionalAssociation.vue';
-import { useAboutContent } from '../composables/useAboutContent';
+import { useAboutContent } from '@/composables/useAboutContent';
 
 // Router for navigation
 const router = useRouter();

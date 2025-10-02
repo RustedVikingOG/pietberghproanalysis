@@ -134,9 +134,9 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
-import type { JourneyPhase } from '../models/AboutContent';
-import { useTimeline } from '../composables/useTimeline';
-import { AboutUtils } from '../utils/aboutUtils';
+import type { JourneyPhase } from '@/models/AboutContent';
+import { useTimeline } from '@/composables/useTimeline';
+import { AboutUtils } from '@/utils/aboutUtils';
 
 interface Props {
   journeyPhases: JourneyPhase[];

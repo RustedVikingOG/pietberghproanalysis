@@ -134,10 +134,12 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { useBusinessLogic } from '@/composables/useBusinessLogic';
-import type { Service } from '@/models/Service';
+
 import HeroSection from '@/components/HomeHero.vue';
 import ServicesOverview from '@/components/ServicesOverview.vue';
+
+import { useBusinessLogic } from '@/composables/useBusinessLogic';
+import type { Service } from '@/models/Service';
 
 // Router
 const router = useRouter();

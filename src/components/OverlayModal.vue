@@ -81,6 +81,7 @@
 <script setup lang="ts">
 import { watch } from 'vue';
 import { computed, onMounted, onUnmounted, ref } from 'vue';
+
 import type { OverlayModalProps, OverlayModalEmits } from '@/models/OverlayModal';
 
 // Template refs

@@ -137,6 +137,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
+
 import type { Service } from '@/models/Service';
 
 // Props

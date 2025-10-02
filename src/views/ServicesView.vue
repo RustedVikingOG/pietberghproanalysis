@@ -92,10 +92,12 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import ServiceHero from '../components/ServiceHero.vue';
-import ServicesOverview from '../components/ServicesOverview.vue';
-import ServiceDetail from '../components/ServiceDetail.vue';
-import { useServices } from '../composables/useServices';
+
+import ServiceHero from '@/components/ServiceHero.vue';
+import ServicesOverview from '@/components/ServicesOverview.vue';
+import ServiceDetail from '@/components/ServiceDetail.vue';
+
+import { useServices } from '@/composables/useServices';
 
 const router = useRouter();
 

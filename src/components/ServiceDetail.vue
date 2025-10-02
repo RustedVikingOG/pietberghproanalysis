@@ -141,7 +141,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Service } from '../models/Service';
+import type { Service } from '@/models/Service';
 
 interface Props {
   service: Service;

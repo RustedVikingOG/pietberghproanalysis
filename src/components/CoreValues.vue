@@ -85,7 +85,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { CoreValue } from '../models/AboutContent';
+
+import type { CoreValue } from '@/models/AboutContent';
 
 interface Props {
   coreValues: CoreValue[];
