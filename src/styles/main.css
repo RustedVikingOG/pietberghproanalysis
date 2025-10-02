@@ -233,7 +233,7 @@
   
   /* Background Effects */
   .bg-gradient-primary {
-    @apply bg-gradient-to-r from-primary-900 via-primary-800 to-primary-700;
+    @apply bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700;
   }
   
   .bg-glassmorphism {

@@ -223,10 +223,23 @@
     <OverlayModal
       :is-open="modalController.isOpen.value"
       :title="modalController.currentContent.value?.title || ''"
-      :icon="modalController.currentContent.value?.icon"
       :max-width="'3xl'"
       @close="modalController.closeModal"
     >
+      <template #icon>
+        <ListStart 
+          v-if="modalController.currentContent.value?.type === 'terms'" 
+          class="w-6 h-6 text-blue-400" 
+        />
+        <ShieldUser 
+          v-else-if="modalController.currentContent.value?.type === 'privacy'" 
+          class="w-6 h-6 text-blue-400" 
+        />
+        <FileBadge 
+          v-else 
+          class="w-6 h-6 text-blue-400" 
+        />
+      </template>
       <div v-if="modalController.currentContent.value" class="space-y-6">
         <!-- Last Updated -->
         <div class="text-sm text-gray-500 bg-gray-50 p-3 rounded-lg">
@@ -303,6 +316,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import { FileBadge, ListStart, ShieldUser } from 'lucide-vue-next';
 
 import logoLight from '@/assets/logo-light.svg';
 import OverlayModal from '@/components/OverlayModal.vue';
