@@ -1,5 +1,6 @@
 <template>
-  <section class="relative bg-gradient-primary text-white overflow-hidden">
+  <!-- <section class="relative bg-gradient-primary text-white overflow-hidden"> -->
+  <section class="relative bg-gradient-to-br from-slate-600 to-slate-800 text-white overflow-hidden">
     <!-- Background Pattern -->
     <div class="bg-hero-pattern">
       <div class="absolute inset-0 bg-white/5 pattern-dots"></div>
@@ -22,7 +23,11 @@
           <!-- Main Title -->
           <div class="space-content">
             <h1 class="heading-hero">
-              <span class="block">{{ heroData.mainTitle }}</span>
+              <span 
+                class="
+                  block text-slate-900
+                "
+              >{{ heroData.mainTitle }}</span>
               <span class="block text-secondary-400 text-hero-subtitle">
                 {{ heroData.subtitle }}
               </span>
@@ -147,6 +152,20 @@ import logoDark from '@/assets/logo-dark.svg';
 import CardLayout from './layouts/CardLayout.vue';
 import StatCard from './cards/StatCard.vue';
 import { useAchievementStats } from '@/composables/achievements/useAchievementStats';
+import { animate } from 'animejs';
+
+// Helper function to generate random numbers
+const random = (min: number, max: number): number => {
+  return Math.random() * (max - min) + min;
+};
+
+animate('.shape', {
+  x: random(-100, 100),
+  y: random(-100, 100),
+  rotate: random(-180, 180),
+  duration: random(500, 1000),
+  composition: 'blend',
+});
 
 const { getStatsB } = useAchievementStats();
 const stats = getStatsB();
