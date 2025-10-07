@@ -1,5 +1,5 @@
 <template>
-  <footer class="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 text-white overflow-hidden">
+  <footer class="relative bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800 text-white overflow-hidden border-t border-secondary-500">
     <!-- Background Pattern -->
     <div class="absolute inset-0 opacity-10">
       <div class="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-transparent"></div>
@@ -15,10 +15,10 @@
 
     <!-- Main Footer Content -->
     <div class="relative container-section py-20">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
         
         <!-- Company Info - Enhanced -->
-        <div class="lg:col-span-5">
+        <div class="lg:col-span-2">
           <!-- Logo and Brand -->
           <div class="flex items-center space-x-4 mb-8">
             <div class="relative">
@@ -75,14 +75,11 @@
                 :rel="social.isExternal ? 'noopener noreferrer' : undefined"
                 class="group relative w-12 h-12 bg-white/10 hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-600 rounded-xl flex items-center justify-center border border-white/20 hover:border-blue-400 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1"
               >
-                <svg class="w-5 h-5 text-slate-300 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                  <!-- LinkedIn -->
-                  <path v-if="social.name === 'LinkedIn'" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                  <!-- Email -->
-                  <path v-else-if="social.name === 'Email'" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                  <!-- Phone -->
-                  <path v-else-if="social.name === 'Phone'" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                <svg v-if="social.icon === 'linkedin'" class="w-5 h-5 text-slate-300 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                  <use href="/linkedin.svg?url" x="0" y="0" width="24" height="24" />
                 </svg>
+                <Mail v-else-if="social.name === 'Email'" class="w-5 h-5 text-slate-300 group-hover:text-white transition-colors"/>
+                <Phone v-else-if="social.name === 'Phone'" class="w-5 h-5 text-slate-300 group-hover:text-white transition-colors"/>
                 <!-- Hover effect overlay -->
                 <div class="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-blue-600/0 group-hover:from-blue-500/20 group-hover:to-blue-600/20 rounded-xl transition-all duration-300"></div>
               </a>
@@ -91,94 +88,77 @@
         </div>
         
         <!-- Services Section -->
-        <div class="lg:col-span-2">
-          <h3 class="text-lg font-bold text-white mb-6 relative">
-            Services
-            <div class="absolute -bottom-2 left-0 w-8 h-0.5 bg-gradient-to-r from-blue-400 to-blue-600"></div>
-          </h3>
-          <ul class="space-y-3">
-            <li v-for="link in serviceLinks" :key="link.label">
-              <router-link
-                :to="link.to"
-                class="text-slate-300 hover:text-blue-300 transition-colors text-sm flex items-center group"
-              >
-                <span class="w-1 h-1 bg-blue-400 rounded-full mr-3 group-hover:scale-150 transition-transform duration-200"></span>
-                {{ link.label }}
-              </router-link>
-            </li>
-          </ul>
-        </div>
-        
-        <!-- Quick Links Section -->
-        <div class="lg:col-span-2">
-          <h3 class="text-lg font-bold text-white mb-6 relative">
-            Quick Links
-            <div class="absolute -bottom-2 left-0 w-8 h-0.5 bg-gradient-to-r from-blue-400 to-blue-600"></div>
-          </h3>
-          <ul class="space-y-3">
-            <li v-for="link in quickLinks" :key="link.label">
-              <router-link
-                :to="link.to"
-                class="text-slate-300 hover:text-blue-300 transition-colors text-sm flex items-center group"
-              >
-                <span class="w-1 h-1 bg-blue-400 rounded-full mr-3 group-hover:scale-150 transition-transform duration-200"></span>
-                {{ link.label }}
-              </router-link>
-            </li>
-          </ul>
-        </div>
-        
-        <!-- Contact Section - Enhanced -->
-        <div class="lg:col-span-3">
-          <h3 class="text-lg font-bold text-white mb-6 relative">
-            Get in Touch
-            <div class="absolute -bottom-2 left-0 w-8 h-0.5 bg-gradient-to-r from-blue-400 to-blue-600"></div>
-          </h3>
-          <div class="space-y-4">
-            <div 
-              v-for="contact in footerContent.contactDetails" 
-              :key="contact.type"
-              class="group"
-            >
-              <div class="flex items-start space-x-4">
-                <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-r from-blue-500/20 to-blue-600/20 rounded-lg flex items-center justify-center border border-blue-500/30 group-hover:border-blue-400 transition-colors">
-                  <svg class="w-5 h-5 text-blue-400 group-hover:text-blue-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <!-- Email Icon -->
-                    <path v-if="contact.type === 'email'" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                    <!-- Phone Icon -->
-                    <path v-else-if="contact.type === 'phone'" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                    <!-- Location Icon -->
-                    <path v-else-if="contact.type === 'location'" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                  </svg>
-                </div>
-                <div>
-                  <div class="text-sm font-medium text-blue-300 mb-1">{{ contact.label }}</div>
-                  <a 
-                    v-if="contact.href" 
-                    :href="contact.href" 
-                    class="text-white hover:text-blue-300 transition-colors font-medium"
+        <div class="grid grid-rows-1 lg:grid-rows-3 lg:col-span-2">
+          <div class="grid grid-cols-1 lg:grid-cols-2 lg:rows-span-2">
+            <div class="lg:cols-span-1">
+              <h3 class="text-lg font-bold text-white mb-6 relative">
+                Services
+                <div class="absolute -bottom-2 left-0 w-8 h-0.5 bg-gradient-to-r from-blue-400 to-blue-600"></div>
+              </h3>
+              <ul class="space-y-3">
+                <li v-for="link in serviceLinks" :key="link.label">
+                  <router-link
+                    :to="link.to"
+                    class="text-slate-300 hover:text-blue-300 transition-colors text-sm flex items-center group"
                   >
-                    {{ contact.value }}
-                  </a>
-                  <div v-else class="text-white font-medium">{{ contact.value }}</div>
+                    <span class="w-1 h-1 bg-blue-400 rounded-full mr-3 group-hover:scale-150 transition-transform duration-200"></span>
+                    {{ link.label }}
+                  </router-link>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Contact Section - Enhanced -->
+            <div class="lg:cols-span-1 lg:rows-span-2">
+              <h3 class="text-lg font-bold text-white mb-6 relative">
+                Get in Touch
+                <div class="absolute -bottom-2 left-0 w-8 h-0.5 bg-gradient-to-r from-blue-400 to-blue-600"></div>
+              </h3>
+              <div class="space-y-4">
+                <div 
+                  v-for="contact in footerContent.contactDetails" 
+                  :key="contact.type"
+                  class="group"
+                >
+                  <div class="flex items-center space-x-4">
+                    <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-r from-blue-500/20 to-blue-600/20 rounded-lg flex items-center justify-center border border-blue-500/30 group-hover:border-blue-400 transition-colors">
+                      <!-- Email Icon -->
+                      <Mail v-if="contact.type === 'email'" class="w-5 h-5 text-blue-300"/>
+                      <!-- Phone Icon -->
+                      <Phone v-else-if="contact.type === 'phone'" class="w-5 h-5 text-blue-300"/>
+                      <!-- Location Icon -->
+                      <MapPin v-else-if="contact.type === 'location'" class="w-5 h-5 text-blue-300"/>
+                    </div>
+                    <div>
+                      <div class="text-sm font-medium text-blue-300 mb-1">{{ contact.label }}</div>
+                      <a 
+                        v-if="contact.href" 
+                        :href="contact.href" 
+                        class="text-white hover:text-blue-300 transition-colors font-medium"
+                      >
+                        {{ contact.value }}
+                      </a>
+                      <div v-else class="text-white font-medium">{{ contact.value }}</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- Call to Action -->
-          <div class="mt-8 p-4 bg-gradient-to-r from-blue-600/20 to-blue-700/20 rounded-xl border border-blue-500/30 backdrop-blur-sm">
-            <div class="flex items-start space-x-3">
-              <div class="flex-shrink-0 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
-                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
-                </svg>
-              </div>
-              <div>
-                <div class="text-blue-300 font-semibold text-sm mb-1">Professional Consultation</div>
-                <p class="text-slate-300 text-xs leading-relaxed">
-                  Free initial consultation available to discuss your business needs and determine how we can help optimize your operations.
-                </p>
+          <div class="lg:rows-span-1 mt-6">
+            <div class="mt-8 p-4 bg-gradient-to-r from-blue-600/20 to-blue-700/20 rounded-xl border border-blue-500/30 backdrop-blur-sm">
+              <div class="flex items-start space-x-3">
+                <div class="flex-shrink-0 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                  <Info class="w-4 h-4 text-blue-900"/>
+                </div>
+                <div>
+                  <div class="text-blue-300 font-semibold text-sm mb-1">Professional Consultation</div>
+                  <p class="text-slate-300 text-xs leading-relaxed">
+                    Free initial consultation available to discuss your business needs and determine how we can help optimize your operations.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -316,7 +296,15 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { FileBadge, ListStart, ShieldUser } from 'lucide-vue-next';
+import {
+  FileBadge,
+  ListStart,
+  ShieldUser,
+  Mail,
+  Phone,
+  MapPin,
+  Info
+} from 'lucide-vue-next';
 
 import logoLight from '@/assets/logo-light.svg';
 import OverlayModal from '@/components/OverlayModal.vue';
@@ -409,14 +397,6 @@ const serviceLinks = [
   { label: 'Editing & Translation', to: '/services#editing-translation' },
   { label: 'Success Stories', to: '/portfolio#portfolio-cases' },
   { label: 'Consultation', to: '/contact' }
-];
-
-const quickLinks = [
-  { label: 'About', to: '/about' },
-  { label: 'Services', to: '/services' },
-  { label: 'Portfolio', to: '/portfolio' },
-  { label: 'Testimonials', to: '/testimonials' },
-  { label: 'Contact', to: '/contact' }
 ];
 
 // Legal link actions for modal
