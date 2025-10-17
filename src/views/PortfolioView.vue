@@ -148,9 +148,11 @@
 <script setup lang="ts">
 import { onMounted, computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
+
 import PortfolioHero from '@/components/PortfolioHero.vue';
 import PortfolioFilters from '@/components/PortfolioFilters.vue';
 import PortfolioCard from '@/components/PortfolioCard.vue';
+
 import { usePortfolio } from '@/composables/usePortfolio';
 import { PortfolioController } from '@/controllers/PortfolioController';
 import type { SuccessStory } from '@/models/SuccessStory';

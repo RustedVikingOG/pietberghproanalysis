@@ -36,13 +36,11 @@
       <AboutHero
         :introduction="introduction"
         :stats="professionalStats"
-        @scroll-to-services="scrollToSection('services')"
       />
 
       <!-- Journey Timeline Section -->
       <JourneyTimeline
         :journey-phases="journeyPhases"
-        @learn-more="handleLearnMore"
       />
 
       <!-- Core Values Section -->
@@ -112,7 +110,7 @@
     </main>
 
     <!-- Navigation assistance -->
-    <nav 
+    <!-- <nav 
       v-if="isDataLoaded"
       class="fixed right-4 top-1/2 transform -translate-y-1/2 z-50 hidden lg:block"
     >
@@ -128,28 +126,29 @@
           :title="section.label"
         />
       </div>
-    </nav>
+    </nav> -->
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, nextTick } from 'vue';
+import { onMounted, nextTick } from 'vue';
 import { useRouter } from 'vue-router';
-import AboutHero from '../components/AboutHero.vue';
-import JourneyTimeline from '../components/JourneyTimeline.vue';
-import CoreValues from '../components/CoreValues.vue';
-import CredentialsCardLayout from '../components/layouts/CredentialsCardLayout.vue';
-import CredentialCard from '../components/cards/CredentialCard.vue';
-import CardLayout from '../components/layouts/CardLayout.vue';
-import StatCard from '../components/cards/StatCard.vue';
-import AchievementCard from '../components/cards/AchievementCard.vue';
+
+import AboutHero from '@/components/AboutHero.vue';
+import JourneyTimeline from '@/components/JourneyTimeline.vue';
+import CoreValues from '@/components/CoreValues.vue';
+import CredentialsCardLayout from '@/components/layouts/CredentialsCardLayout.vue';
+import CredentialCard from '@/components/cards/CredentialCard.vue';
+import CardLayout from '@/components/layouts/CardLayout.vue';
+import StatCard from '@/components/cards/StatCard.vue';
+import AchievementCard from '@/components/cards/AchievementCard.vue';
+import AchievementsLayout from '@/components/layouts/AchievementsLayout.vue';
+import ProfessionalAssociation from '@/components/ProfessionalAssociation.vue';
+
 import { useAchievementCredentials } from '@/composables/achievements/useAchievementCredential';
 import { useAchievementStats } from '@/composables/achievements/useAchievementStats';
 import { useAchievementsGeneral } from '@/composables/achievements/useAchievementsGeneral';
-
-import AchievementsLayout from '@/components/layouts/AchievementsLayout.vue';
-import ProfessionalAssociation from '../components/ProfessionalAssociation.vue';
-import { useAboutContent } from '../composables/useAboutContent';
+import { useAboutContent } from '@/composables/useAboutContent';
 
 // Router for navigation
 const router = useRouter();
@@ -175,48 +174,6 @@ const { getAchievements, getAchievementCategory } = useAchievementsGeneral();
 const stats = getStatsA();
 const achievementsData = getAchievements();
 
-// Active section tracking
-const activeSection = ref<string>('hero');
-
-// Navigation sections
-const navigationSections = [
-  { id: 'hero', label: 'Introduction' },
-  { id: 'journey', label: 'Journey' },
-  { id: 'values', label: 'Values' },
-  { id: 'achievements', label: 'Achievements' },
-  { id: 'association', label: 'Association' }
-];
-
-/**
- * Scroll to a specific section
- */
-const scrollToSection = (sectionId: string): void => {
-  const element = document.getElementById(sectionId);
-  if (element) {
-    // Respect user's motion preferences for accessibility
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    element.scrollIntoView({
-      behavior: prefersReducedMotion ? 'auto' : 'smooth',
-      block: 'start'
-    });
-    activeSection.value = sectionId;
-  }
-};
-
-/**
- * Handle learn more actions from journey timeline
- */
-const handleLearnMore = (phase: string): void => {
-  // Navigate to services page for more detailed information
-  router.push('/services');
-  
-  // For now, scroll to achievements if it's a significant phase
-  if (['The Mastery', 'The Return'].includes(phase)) {
-    scrollToSection('achievements');
-  }
-};
-
 /**
  * Handle learn more from professional association
  */
@@ -225,39 +182,11 @@ const handleAssociationLearnMore = (): void => {
   router.push('/contact?inquiry=aeasa');
 };
 
-/**
- * Set up intersection observer for section tracking
- */
-const setupSectionObserver = (): void => {
-  const sections = navigationSections.map(section => document.getElementById(section.id)).filter(Boolean);
-  
-  if (sections.length === 0) return;
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && entry.target.id) {
-          activeSection.value = entry.target.id;
-        }
-      });
-    },
-    {
-      threshold: 0.3,
-      rootMargin: '-100px 0px -100px 0px'
-    }
-  );
-
-  sections.forEach((section) => {
-    if (section) observer.observe(section);
-  });
-};
-
 // Lifecycle
 onMounted(async () => {
   await fetchAboutData();
   
   // Setup section observer after content loads
   await nextTick();
-  setupSectionObserver();
 });
 </script>

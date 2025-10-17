@@ -21,82 +21,54 @@
 
       <!-- Services Grid -->
       <div class="grid-services">
-        <div
+        <ServiceCard
           v-for="service in displayServices"
           :key="service.id"
-          class="card-service group"
+          :title="service.title"
+          :description="service.description"
+          :features="service.features"
+          :max-features="3"
         >
-          <!-- Service Icon -->
-          <div class="mb-6">
-            <div class="icon-container-lg">
-              <svg class="w-6 h-6 lg:w-8 lg:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <!-- Evidence Analysis Icon -->
-                <path v-if="service.category === 'evidence-analysis'" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                <!-- Process Reengineering Icon -->
-                <path v-else-if="service.category === 'process-reengineering'" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                <!-- Editing & Translation Icon -->
-                <path v-else-if="service.category === 'editing-translation'" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                <!-- Default Investigation Icon -->
-                <path v-else stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-              </svg>
-            </div>
-          </div>
+          <template #icon>
+            <!-- Evidence Analysis Icon -->
+            <FileText v-if="service.category === 'evidence-analysis'" class="w-6 h-6 lg:w-8 lg:h-8 text-white" />
+            <!-- Process Reengineering Icon -->
+            <Workflow v-else-if="service.category === 'process-reengineering'" class="w-6 h-6 lg:w-8 lg:h-8 text-white" />
+            <!-- Editing & Translation Icon -->
+            <Languages v-else-if="service.category === 'editing-translation'" class="w-6 h-6 lg:w-8 lg:h-8 text-white" />
+            <!-- Default Investigation Icon -->
+            <Search v-else class="w-6 h-6 lg:w-8 lg:h-8 text-white" />
+          </template>
 
-          <!-- Service Content - flex-grow to take available space -->
-          <div class="flex-grow flex flex-col">
-            <!-- Title and Description -->
-            <div class="mb-6">
-              <h3 class="text-card-title">
-                {{ service.title }}
-              </h3>
-              <p class="text-slate-600 leading-relaxed line-clamp-3">
-                {{ service.description }}
-              </p>
+          <template #actions>
+            <div class="flex items-center justify-between">
+              <router-link
+                :to="`/contact`"
+                class="
+                  text-white hover:text-gray-300 transition-colors 
+                  text-sm flex items-center group bg-blue-500
+                  p-[6px] pr-[12px] rounded-md
+                "
+              >
+                <span class="w-1 h-1 bg-blue-500 rounded-full group-hover:scale-150 transition-transform duration-200"></span>
+                Contact for Pricing
+              </router-link>
+              
+              <router-link
+                :to="
+                  service.category === 'evidence-analysis' ? '/services#evidence-analysis' :
+                  service.category === 'process-reengineering' ? '/services#process-reengineering' :
+                  service.category === 'editing-translation' ? '/services#editing-translation' :
+                  '/services'
+                "
+                class="text-blue-700 hover:text-blue-300 transition-colors text-sm flex items-center group"
+              >
+                <span class="w-1 h-1 bg-blue-500 rounded-full mr-3 group-hover:scale-150 transition-transform duration-200"></span>
+                Learn More >
+              </router-link>
             </div>
-
-            <!-- Service Features - flex-grow to distribute space -->
-            <div class="flex-grow mb-6">
-              <ul class="space-y-2">
-                <li 
-                  v-for="feature in service.features?.slice(0, 3)" 
-                  :key="feature"
-                  class="flex items-center text-sm text-slate-600"
-                >
-                  <svg class="w-4 h-4 text-secondary-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                  </svg>
-                  {{ feature }}
-                </li>
-              </ul>
-            </div>
-
-            <!-- Service Meta - always at bottom -->
-            <div class="mt-auto pt-6 border-t border-slate-100">
-              <div class="flex items-center justify-between">
-                <router-link
-                  :to="`/contact`"
-                  class="text-slate-300 hover:text-blue-300 transition-colors text-sm flex items-center group"
-                >
-                  <span class="w-1 h-1 bg-blue-400 rounded-full mr-3 group-hover:scale-150 transition-transform duration-200"></span>
-                  Contact for Pricing
-                </router-link>
-                
-                <router-link
-                  :to="
-                    service.category === 'evidence-analysis' ? '/services#evidence-analysis' :
-                    service.category === 'process-reengineering' ? '/services#process-reengineering' :
-                    service.category === 'editing-translation' ? '/services#editing-translation' :
-                    '/services'
-                  "
-                  class="text-slate-300 hover:text-blue-300 transition-colors text-sm flex items-center group"
-                >
-                  <span class="w-1 h-1 bg-blue-400 rounded-full mr-3 group-hover:scale-150 transition-transform duration-200"></span>
-                  Learn More
-                </router-link>
-              </div>
-            </div>
-          </div>
-        </div>
+          </template>
+        </ServiceCard>
       </div>
 
       <!-- Call to Action -->
@@ -137,6 +109,9 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import { FileText, Workflow, Languages, Search } from 'lucide-vue-next';
+import ServiceCard from '@/components/cards/ServiceCard.vue';
+
 import type { Service } from '@/models/Service';
 
 // Props
@@ -158,12 +133,3 @@ const displayServices = computed(() =>
 );
 </script>
 
-<style scoped>
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-</style>

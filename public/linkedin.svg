@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="LinkedIn">
+  <!-- Outer rounded border (thicker, tighter inner padding) -->
+  <rect x="8" y="8" width="104" height="104" rx="20" ry="20" fill="none" stroke="#ffffff" stroke-width="5"/>
+
+  <!-- "in" mark: use Avenir-family fallbacks, heavier weight, and adjusted sizing/position -->
+  <!-- The official Avenir 95 Black may not be available on all systems; we provide fallbacks. -->
+  <g fill="#ffffff" font-family="'Avenir Next','Avenir','Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="900">
+    <!-- lowercase i as a rect + circle to match heavy geometric style -->
+    <!-- <rect x="28" y="42" width="12" height="36" rx="1" />
+    <circle cx="34" cy="34" r="8" /> -->
+
+    <!-- lowercase n drawn as a bold rounded shape using a path for better control -->
+    <!-- <path d="M52 78V54h12v6c0 6 6 12 16 12 10 0 18-8 18-22V54h12v24c0 18-14 28-34 28-16 0-24-10-24-22z"/> -->
+    <text
+        x="50%"
+        y="55%"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        font-family="Helvetica, Arial, sans-serif"
+        font-weight="700"
+        font-size="80"
+        fill="#ffffff"
+    >
+        in
+    </text>
+  </g>
+</svg>

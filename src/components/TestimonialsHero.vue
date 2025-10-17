@@ -158,6 +158,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
+
 import type { Testimonial } from '@/models/Testimonial';
 
 interface Props {

@@ -56,7 +56,7 @@
     </section>
     
     <!-- Contact CTA Section -->
-    <section class="section-padding bg-primary-600">
+    <section class="section-padding bg-primary-900">
       <div class="container-section text-center">
         <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
           Ready to Get Started?
@@ -64,21 +64,21 @@
         <p class="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
           Contact us today to discuss your specific needs and discover how our expertise can help you achieve your objectives.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <div class="flex flex-col gap-4 justify-center">
           <button
             @click="handleContactNavigation"
-            class="btn-white"
+            class="btn-white text-gray-100 flex flex-row items-center justify-center"
           >
-            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="white" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
             </svg>
             Contact Us Today
           </button>
           <button
             @click="handleTestimonialsNavigation"
-            class="btn-outline-white"
+            class="btn-outline-white text-gray-100 flex flex-row items-center justify-center"
           >
-            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="white" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
             View Testimonials
@@ -92,10 +92,12 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import ServiceHero from '../components/ServiceHero.vue';
-import ServicesOverview from '../components/ServicesOverview.vue';
-import ServiceDetail from '../components/ServiceDetail.vue';
-import { useServices } from '../composables/useServices';
+
+import ServiceHero from '@/components/ServiceHero.vue';
+import ServicesOverview from '@/components/ServicesOverview.vue';
+import ServiceDetail from '@/components/ServiceDetail.vue';
+
+import { useServices } from '@/composables/useServices';
 
 const router = useRouter();
 

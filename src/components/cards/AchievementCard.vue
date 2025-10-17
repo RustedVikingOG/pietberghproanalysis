@@ -28,6 +28,7 @@
 
 <script setup lang="ts">
 import { Star } from 'lucide-vue-next';
+
 import type { Achievement } from '@/models/achievements/Achievement';
 
 interface Props {

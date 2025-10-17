@@ -75,58 +75,9 @@
               <p class="text-slate-600 leading-relaxed">
                 {{ phase.description }}
               </p>
-
-              <!-- Action button for key phases -->
-              <div v-if="isKeyPhase(phase.phase)" class="mt-4">
-                <button
-                  @click="learnMore(phase.phase)"
-                  class="text-blue-600 hover:text-blue-800 font-medium text-sm inline-flex items-center transition-colors duration-200"
-                >
-                  Learn more
-                  <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                  </svg>
-                </button>
-              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- Navigation controls -->
-      <div class="flex justify-center items-center mt-12 space-x-4">
-        <button
-          @click="previousPhase"
-          :disabled="activePhase === 0"
-          class="p-2 rounded-full bg-white shadow-md border border-slate-200 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-50 transition-colors duration-200"
-        >
-          <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-          </svg>
-        </button>
-
-        <div class="flex space-x-2">
-          <button
-            v-for="(_, index) in journeyPhases"
-            :key="index"
-            @click="scrollToPhase(index)"
-            class="w-3 h-3 rounded-full transition-all duration-200"
-            :class="[
-              isPhaseActive(index) ? 'bg-blue-600' : 'bg-slate-300',
-              'hover:scale-110'
-            ]"
-          />
-        </div>
-
-        <button
-          @click="nextPhase"
-          :disabled="activePhase === journeyPhases.length - 1"
-          class="p-2 rounded-full bg-white shadow-md border border-slate-200 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-50 transition-colors duration-200"
-        >
-          <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
-        </button>
       </div>
     </div>
   </section>
@@ -134,9 +85,9 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
-import type { JourneyPhase } from '../models/AboutContent';
-import { useTimeline } from '../composables/useTimeline';
-import { AboutUtils } from '../utils/aboutUtils';
+import type { JourneyPhase } from '@/models/AboutContent';
+import { useTimeline } from '@/composables/useTimeline';
+import { AboutUtils } from '@/utils/aboutUtils';
 
 interface Props {
   journeyPhases: JourneyPhase[];
@@ -144,17 +95,9 @@ interface Props {
 
 defineProps<Props>();
 
-const emit = defineEmits<{
-  learnMore: [phase: string];
-}>();
-
 // Timeline functionality
 const {
-  activePhase,
   setTimelineRef,
-  scrollToPhase,
-  nextPhase,
-  previousPhase,
   isPhaseActive,
   isPhaseVisible,
   getProgress
@@ -175,26 +118,11 @@ const formatYear = (years?: string): string => {
 };
 
 /**
- * Check if phase is a key phase that should show learn more button
- */
-const isKeyPhase = (phaseName: string): boolean => {
-  const keyPhases = ['The Mastery', 'The Return'];
-  return keyPhases.includes(phaseName);
-};
-
-/**
  * Get icon component for phase
  */
 const getPhaseIcon = (_iconName?: string): string => {
   // Return simple div for now - in a real app you'd use icon library
   return 'div';
-};
-
-/**
- * Handle learn more action
- */
-const learnMore = (phase: string): void => {
-  emit('learnMore', phase);
 };
 
 // Set up timeline reference on mount

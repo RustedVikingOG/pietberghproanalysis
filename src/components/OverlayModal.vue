@@ -1,42 +1,26 @@
 <template>
   <Teleport to="body">
-    <Transition
-      name="modal"
-      enter-active-class="transition-all duration-300 ease-out"
-      enter-from-class="opacity-0"
-      enter-to-class="opacity-100"
-      leave-active-class="transition-all duration-200 ease-in"
-      leave-from-class="opacity-100"
-      leave-to-class="opacity-0"
-    >
+    <Transition name="modal">
       <div
         v-if="isOpen"
-        ref="modalElement"
         class="fixed inset-0 z-50 flex items-center justify-center p-4"
         @click="handleBackdropClick"
         tabindex="-1"
       >
         <!-- Backdrop -->
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+        <div class="modal-backdrop"></div>
         
         <!-- Modal Container -->
         <div
           :class="modalSizeClasses"
-          class="relative bg-white rounded-2xl shadow-2xl max-h-[90vh] overflow-hidden"
+          class="relative bg-white rounded-2xl shadow-2xl max-h-[90vh] overflow-hidden transform"
           @click.stop
         >
           <!-- Modal Header -->
           <div class="flex items-center justify-between p-6 border-b border-gray-200 bg-gradient-to-r from-slate-50 to-blue-50">
             <div class="flex items-center space-x-3">
               <!-- Icon -->
-              <div
-                v-if="icon"
-                class="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center"
-              >
-                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path :d="getIconComponent(icon)" />
-                </svg>
-              </div>
+              <slot name="icon"></slot>
               
               <!-- Title -->
               <h2 class="text-xl font-bold text-gray-900">
@@ -80,11 +64,9 @@
 
 <script setup lang="ts">
 import { watch } from 'vue';
-import { computed, onMounted, onUnmounted, ref } from 'vue';
-import type { OverlayModalProps, OverlayModalEmits } from '@/models/OverlayModal';
+import { computed, onMounted, onUnmounted } from 'vue';
 
-// Template refs
-const modalElement = ref<HTMLElement | null>(null);
+import type { OverlayModalProps, OverlayModalEmits } from '@/models/OverlayModal';
 
 // Props with defaults
 const props = withDefaults(defineProps<OverlayModalProps>(), {
@@ -127,17 +109,6 @@ const handleEscapeKey = (event: KeyboardEvent): void => {
   }
 };
 
-const getIconComponent = (iconName: string): string => {
-  // Return appropriate SVG path based on icon name
-  const iconMap: Record<string, string> = {
-    shield: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
-    document: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
-    star: 'M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z'
-  };
-
-  return iconMap[iconName] || iconMap.document;
-};
-
 // Lifecycle
 onMounted(() => {
   // Add global escape key listener
@@ -168,5 +139,20 @@ watch(() => props.isOpen, (newValue) => {
 </script>
 
 <style scoped>
-/* Additional modal animations can be added here if needed */
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: opacity 200ms ease;
+}
+
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 200ms ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
 </style>

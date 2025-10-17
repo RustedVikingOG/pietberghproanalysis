@@ -64,44 +64,18 @@
           </div>
         </div>
       </div>
-
-      <!-- Interactive elements -->
-      <div class="mt-12 flex justify-center">
-        <div class="flex space-x-2">
-          <button
-            v-for="(_, index) in coreValues"
-            :key="index"
-            @click="highlightValue(index)"
-            :class="[
-              'w-3 h-3 rounded-full transition-all duration-200',
-              highlightedIndex === index ? 'bg-blue-600 scale-125' : 'bg-slate-300 hover:bg-slate-400'
-            ]"
-          />
-        </div>
-      </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import type { CoreValue } from '../models/AboutContent';
+import type { CoreValue } from '@/models/AboutContent';
 
 interface Props {
   coreValues: CoreValue[];
 }
 
 defineProps<Props>();
-
-// State for interactive highlighting
-const highlightedIndex = ref<number | null>(null);
-
-/**
- * Highlight a specific value
- */
-const highlightValue = (index: number): void => {
-  highlightedIndex.value = highlightedIndex.value === index ? null : index;
-};
 
 /**
  * Get icon component for value

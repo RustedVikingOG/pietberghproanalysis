@@ -2,6 +2,7 @@
 .docs
 .github
 playwright-report
+.DS_Store
 
 # Logs
 logs

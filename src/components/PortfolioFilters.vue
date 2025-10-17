@@ -119,6 +119,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
+
 import type { SuccessStory } from '@/models/SuccessStory';
 
 interface Props {

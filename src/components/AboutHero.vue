@@ -25,7 +25,7 @@
           </div>
 
           <!-- Call to action -->
-          <div class="pt-4">
+          <!-- <div class="pt-4">
             <button 
               @click="scrollToServices"
               class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl"
@@ -35,7 +35,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
               </svg>
             </button>
-          </div>
+          </div> -->
         </div>
 
         <!-- Professional statistics -->
@@ -92,11 +92,11 @@ defineProps<Props>();
 /**
  * Scroll to services section (emit event for parent to handle)
  */
-const emit = defineEmits<{
-  scrollToServices: [];
-}>();
+// const emit = defineEmits<{
+//   scrollToServices: [];
+// }>();
 
-const scrollToServices = () => {
-  emit('scrollToServices');
-};
+// const scrollToServices = () => {
+//   emit('scrollToServices');
+// };
 </script>

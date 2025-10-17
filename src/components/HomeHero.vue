@@ -1,5 +1,6 @@
 <template>
-  <section class="relative bg-gradient-primary text-white overflow-hidden">
+  <!-- <section class="relative bg-gradient-primary text-white overflow-hidden"> -->
+  <section class="relative bg-gradient-to-br from-slate-600 to-slate-800 text-white overflow-hidden">
     <!-- Background Pattern -->
     <div class="bg-hero-pattern">
       <div class="absolute inset-0 bg-white/5 pattern-dots"></div>
@@ -7,9 +8,7 @@
 
     <!-- Content Container -->
     <div class="relative container-section section-padding">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        
-        <!-- Content Column -->
+      <div class="grid grid-cols-1 md:grid-cols-[70%_30%] gap-12 items-center">
         <div class="space-y-8">
           <!-- Badge -->
           <div class="badge-secondary">
@@ -22,7 +21,9 @@
           <!-- Main Title -->
           <div class="space-content">
             <h1 class="heading-hero">
-              <span class="block">{{ heroData.mainTitle }}</span>
+              <span class="block text-gray-200 mb-4">
+                {{ heroData.mainTitle }}
+              </span>
               <span class="block text-secondary-400 text-hero-subtitle">
                 {{ heroData.subtitle }}
               </span>
@@ -30,7 +31,7 @@
           </div>
 
           <!-- Description -->
-          <p class="text-xl text-primary-100 leading-relaxed max-w-2xl">
+          <p class="text-xl text-primary-100 leading-relaxed">
             {{ heroData.description }}
           </p>
 
@@ -61,72 +62,26 @@
               Learn More
             </button>
           </div>
-
+        </div> 
+        <div>
           <!-- Quick Stats -->
           <CardLayout
-            :class="'grid-stats pt-8 border-t border-primary-600/30'"
+            :class="'flex flex-col pt-8'"
           >
-            <StatCard
+            <div 
               v-for="stat in stats"
               :key="stat.id"
-              :value="stat.value"
-              :label="stat.label"
-              :container-class="`text-center`"
-              :value-class="`text-stat-value text-secondary-400`"
-              :label-class="`text-stat-label text-primary-200`"
-            />
+              class="mb-10 border border-white/20 rounded-[20px] pt-6 pb-6 bg-white/10 backdrop-blur-sm"
+            >
+              <StatCard
+                :value="stat.value"
+                :label="stat.label"
+                :container-class="`text-center`"
+                :value-class="`text-stat-value text-secondary-400`"
+                :label-class="`text-stat-label text-primary-200`"
+              />
+            </div>
           </CardLayout>
-        </div> 
-
-        <!-- Image/Visual Column -->
-        <div class="relative">
-          <!-- Professional Portrait Container -->
-          <div class="relative">
-            <!-- Background Shape -->
-            <div class="absolute inset-0 bg-gradient-to-br from-secondary-500/20 to-secondary-600/30 rounded-3xl transform rotate-3"></div>
-            <div class="absolute inset-0 bg-gradient-to-tr from-primary-600/20 to-primary-500/30 rounded-3xl transform -rotate-2"></div>
-            
-            <!-- Professional Logo Container -->
-            <div class="relative bg-slate-100 rounded-2xl p-8 shadow-2xl">
-              <div class="aspect-w-4 aspect-h-5 bg-gradient-to-b from-slate-200 to-slate-300 rounded-xl flex items-center justify-center">
-                <div class="text-center">
-                  <img 
-                    :src="logoDark" 
-                    alt="PietBergh ProAnalysis Logo" 
-                    class="w-24 h-24 mx-auto mb-4"
-                  />
-                  <p class="text-sm font-medium text-slate-700">PietBergh ProAnalysis</p>
-                  <p class="text-xs text-slate-500">Professional Investigation Services</p>
-                </div>
-              </div>
-              
-              <!-- Credentials Badge -->
-              <div class="absolute -bottom-4 -right-4 bg-white rounded-full p-4 shadow-lg">
-                <div class="flex items-center space-x-2 text-primary-700">
-                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                  </svg>
-                  <span class="text-sm font-semibold">Brigadier</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Floating Elements -->
-          <div class="absolute -top-6 -left-6 bg-secondary-500 rounded-full p-4 shadow-lg animate-pulse">
-            <svg class="w-8 h-8 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-          </div>
-          
-          <div class="absolute -bottom-8 -left-8 bg-primary-500 rounded-lg p-3 shadow-lg">
-            <div class="text-white text-sm font-medium">
-              <div class="flex items-center space-x-2">
-                <div class="w-2 h-2 bg-green-400 rounded-full"></div>
-                <span>Available for Consultation</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -143,11 +98,10 @@
 </template>
 
 <script setup lang="ts">
-import logoDark from '@/assets/logo-dark.svg';
 import CardLayout from './layouts/CardLayout.vue';
 import StatCard from './cards/StatCard.vue';
-import { useAchievementStats } from '@/composables/achievements/useAchievementStats';
 
+import { useAchievementStats } from '@/composables/achievements/useAchievementStats';
 const { getStatsB } = useAchievementStats();
 const stats = getStatsB();
 
