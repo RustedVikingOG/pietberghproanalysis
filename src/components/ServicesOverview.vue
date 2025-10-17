@@ -64,7 +64,7 @@
                 class="text-blue-700 hover:text-blue-300 transition-colors text-sm flex items-center group"
               >
                 <span class="w-1 h-1 bg-blue-500 rounded-full mr-3 group-hover:scale-150 transition-transform duration-200"></span>
-                Learn More  >
+                Learn More >
               </router-link>
             </div>
           </template>
