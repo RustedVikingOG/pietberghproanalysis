@@ -44,10 +44,14 @@
             <div class="flex items-center justify-between">
               <router-link
                 :to="`/contact`"
-                class="text-blue-700 hover:text-blue-300 transition-colors text-sm flex items-center group"
+                class="
+                  text-white hover:text-gray-300 transition-colors 
+                  text-sm flex items-center group bg-blue-500
+                  p-[6px] pr-[12px] rounded-md
+                "
               >
-                <span class="w-1 h-1 bg-blue-500 rounded-full mr-3 group-hover:scale-150 transition-transform duration-200"></span>
-                Contact for Pricing  >
+                <span class="w-1 h-1 bg-blue-500 rounded-full group-hover:scale-150 transition-transform duration-200"></span>
+                Contact for Pricing
               </router-link>
               
               <router-link

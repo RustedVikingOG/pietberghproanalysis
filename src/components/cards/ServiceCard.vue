@@ -40,6 +40,8 @@
       </ul>
     </div>
 
+    <br />
+    
     <!-- Service Meta - always at bottom -->
     <div class="mt-auto pt-3 border-t border-slate-100 flex-shrink-0">
       <slot name="actions">
