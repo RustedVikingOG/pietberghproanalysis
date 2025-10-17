@@ -102,21 +102,6 @@ import CardLayout from './layouts/CardLayout.vue';
 import StatCard from './cards/StatCard.vue';
 
 import { useAchievementStats } from '@/composables/achievements/useAchievementStats';
-import { animate } from 'animejs';
-
-// Helper function to generate random numbers
-const random = (min: number, max: number): number => {
-  return Math.random() * (max - min) + min;
-};
-
-animate('.shape', {
-  x: random(-100, 100),
-  y: random(-100, 100),
-  rotate: random(-180, 180),
-  duration: random(500, 1000),
-  composition: 'blend',
-});
-
 const { getStatsB } = useAchievementStats();
 const stats = getStatsB();
 
